@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brillo Eterno - Carrito de Compras</title>
+
+  <!-- Foundation CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Variables de colores */
+    :root {
+      --bg-primary: #EEC5AF;
+      --text-primary: #FFFFFF;
+      --text-secondary: #E8D7C8;
+      --gold: #C9A14A;
+      --dark: #5A4B40;
+      --neutral: #F4E9E2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #F4E9E2 0%, #E8D7C8 100%);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Top Bar - usando Foundation */
+    .top-bar {
+      background: var(--bg-primary);
+      padding: 1.25rem 0;
+      box-shadow: 0 4px 20px rgba(90, 75, 64, 0.1);
+    }
+
+    .top-bar-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--text-primary);
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .top-bar-left a {
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .top-bar-left a:hover {
+      color: var(--gold);
+    }
+
+    .btn-contacto {
+      background: var(--gold);
+      color: var(--text-primary);
+      padding: 0.65rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-contacto:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    /* Sección principal */
+    .hero-section {
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--dark);
+      opacity: 0.75;
+      letter-spacing: 1px;
+    }
+
+    /* Contenedor del carrito */
+    .cart-container {
+      background: var(--bg-primary);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(90, 75, 64, 0.25);
+      padding: 2.5rem;
+    }
+
+    .cart-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1.5px;
+    }
+
+    .cart-subtitle {
+      color: var(--dark);
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.8;
+    }
+
+    .section-title {
+      color: var(--dark);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      letter-spacing: 1px;
+    }
+
+    /* Contenedor de productos con scroll */
+    .products-container {
+      max-height: 450px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    /* Estilo del scrollbar */
+    .products-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .products-container::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    .products-container::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 10px;
+    }
+
+    .products-container::-webkit-scrollbar-thumb:hover {
+      background: var(--dark);
+    }
+
+    /* Tarjetas de producto - usando Bootstrap form-control */
+    .product-card {
+      background: var(--text-primary);
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      box-shadow: 0 8px 20px rgba(90, 75, 64, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(90, 75, 64, 0.2);
+    }
+
+    .product-image {
+      width: 70px;
+      height: 70px;
+      background: var(--neutral);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .product-image svg {
+      width: 40px;
+      height: 40px;
+      stroke: var(--gold);
+    }
+
+    .product-info {
+      flex-grow: 1;
+    }
+
+    .product-name {
+      color: var(--dark);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .product-price {
+      color: var(--gold);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    /* Controles de cantidad - usando Bootstrap */
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .qty-btn {
+      background: var(--gold);
+      color: var(--text-primary);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .qty-btn:hover {
+      background: var(--dark);
+    }
+
+    .qty-number {
+      background: var(--gold);
+      color: var(--text-primary);
+      width: 36px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    /* Tarjeta de resumen */
+    .summary-card {
+      background: var(--text-primary);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(90, 75, 64, 0.1);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      color: var(--dark);
+      padding: 0.5rem 0;
+    }
+
+    .summary-label {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .summary-value {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--gold);
+    }
+
+    .summary-total {
+      border-top: 2px solid var(--neutral);
+      padding-top: 1rem;
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .summary-total .summary-value {
+      font-size: 1.5rem;
+    }
+
+    /* Botones - usando Bootstrap btn */
+    .btn-finalizar {
+      background: var(--gold);
+      color: var(--text-primary);
+      border: none;
+      padding: 1rem;
+      border-radius: 12px;
+      width: 100%;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .btn-finalizar:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-seguir {
+      background: transparent;
+      color: var(--dark);
+      border: none;
+      padding: 1rem;
+      text-align: center;
+      width: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .btn-seguir:hover {
+      color: var(--gold);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--text-primary);
+      padding: 2.5rem 0;
+      margin-top: 5rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      border-radius: 50%;
+    }
+
+    .footer-links a {
+      color: var(--text-primary);
+      margin-left: 2rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Responsive - Tailwind mobile-first */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .cart-title {
+        font-size: 1.75rem;
+      }
+
+      .cart-container {
+        padding: 1.75rem;
+      }
+
+      .products-container {
+        max-height: 350px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .footer-links a {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Foundation Top Bar -->
+<div class="top-bar">
+  <div class="grid-container">
+    <div class="grid-x align-justify align-middle">
+      <div class="cell auto">
+        <ul class="menu align-left">
+          <li class="top-bar-title">
+            <span>Brillo Eterno</span>
+          </li>
+        </ul>
+      </div>
+      <div class="cell shrink show-for-medium">
+        <ul class="menu align-right">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#formularios">Formularios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="cell shrink">
+        <a href="#contacto" class="btn-contacto">Contacto</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content usando Tailwind -->
+<main class="py-8 lg:py-12">
+  <div class="grid-container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <h1 class="hero-title font-serif">Tu Carrito de Compras</h1>
+      <p class="hero-subtitle">Estamos aquí on datos y deslumbra.</p>
+    </div>
+
+    <!-- Cart Container -->
+    <div class="cart-container max-w-6xl mx-auto">
+      <h2 class="cart-title">Tu Carrito de Compras</h2>
+      <p class="cart-subtitle">Completa tus datos y deslumbra.</p>
+
+      <!-- Grid usando Tailwind mobile-first: 1 col en móvil, 2 en desktop -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- Columna izquierda - Productos con scroll -->
+        <div>
+          <h3 class="section-title">2. Artículos Seleccionados</h3>
+
+          <!-- Contenedor con scroll para muchos productos -->
+          <div class="products-container">
+
+            <!-- Producto 1 -->
+            <div class="product-card">
+              <div class="product-image">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="9"/>
+                  <circle cx="12" cy="12" r="5"/>
+                </svg>
+              </div>
+              <div class="product-info">
+                <div class="product-name">Anillo de Diamantes</div>
+                <div class="product-price">27.00</div>
+              </div>
+              <div class="quantity-control">
+                <button class="qty-btn btn">−</button>
+                <div class="qty-number">1</div>
+                <button class="qty-btn btn">+</button>
+              </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-card">
+              <div class="product-image">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                  <ellipse cx="12" cy="12" rx="9" ry="5"/>
+                </svg>
+              </div>
+              <div class="product-info">
+                <div class="product-name">Pendientes Dorados</div>
+                <div class="product-price">15.50</div>
+              </div>
+              <div class="quantity-control">
+                <button class="qty-btn btn">−</button>
+                <div class="qty-number">2</div>
+                <button class="qty-btn btn">+</button>
+              </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card">
+              <div class="product-image">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="9"/>
+                  <circle cx="12" cy="12" r="5"/>
+                </svg>
+              </div>
+              <div class="product-info">
+                <div class="product-name">Collar de Perlas</div>
+                <div class="product-price">$5.90</div>
+              </div>
+              <div class="quantity-control">
+                <button class="qty-btn btn">−</button>
+                <div class="qty-number">3</div>
+                <button class="qty-btn btn">+</button>
+              </div>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="product-card">
+              <div class="product-image">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                  <rect x="6" y="8" width="12" height="8" rx="2"/>
+                </svg>
+              </div>
+              <div class="product-info">
+                <div class="product-name">Pulsera Elegante</div>
+                <div class="product-price">42.00</div>
+              </div>
+              <div class="quantity-control">
+                <button class="qty-btn btn">−</button>
+                <div class="qty-number">1</div>
+                <button class="qty-btn btn">+</button>
+              </div>
+            </div>
+
+            <!-- Producto 5 -->
+            <div class="product-card">
+              <div class="product-image">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                  <circle cx="12" cy="10" r="3"/>
+                  <path d="M12 13 L12 20"/>
+                </svg>
+              </div>
+              <div class="product-info">
+                <div class="product-name">Broche Vintage</div>
+                <div class="product-price">18.75</div>
+              </div>
+              <div class="quantity-control">
+                <button class="qty-btn btn">−</button>
+                <div class="qty-number">2</div>
+                <button class="qty-btn btn">+</button>
+              </div>
+            </div>
+
+            <!-- Producto 6 -->
+            <div class="product-card">
+              <div class="product-image">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="8"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <div class="product-info">
+                <div class="product-name">Anillo de Oro</div>
+                <div class="product-price">85.00</div>
+              </div>
+              <div class="quantity-control">
+                <button class="qty-btn btn">−</button>
+                <div class="qty-number">1</div>
+                <button class="qty-btn btn">+</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Columna derecha - Resumen -->
+        <div>
+          <h3 class="section-title">2. Resumen del Pedido</h3>
+          <div class="summary-card">
+            <div class="summary-row">
+              <span class="summary-label">Subtotal</span>
+              <span class="summary-value">€850</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Cros a (cota)</span>
+              <span class="summary-value">$1890</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Shipping . Estimado:</span>
+              <span class="summary-value">24 750</span>
+            </div>
+            <div class="summary-row summary-total">
+              <span class="summary-label">Total Emour:</span>
+              <span class="summary-value">€1150</span>
+            </div>
+
+            <!-- Botones usando Bootstrap btn -->
+            <button class="btn-finalizar btn btn-lg">Finalizar Compra</button>
+            <button class="btn-seguir btn">Seguir Compraro</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="grid-container">
+    <div class="footer-content">
+      <div class="footer-logo">M</div>
+      <div>
+        <p>© 2024 Brillo Eterno. Todos ee derdðos reservdo.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

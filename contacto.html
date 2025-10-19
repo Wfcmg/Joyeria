@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brillo Eterno - Contacto</title>
+
+  <!-- Foundation CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Variables de colores */
+    :root {
+      --salmon: #EEC5AF;
+      --beige: #E8D7C8;
+      --crema: #F4E9E2;
+      --dorado: #C9A14A;
+      --marron: #5A4B40;
+      --blanco: #FFFFFF;
+    }
+
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--crema);
+    }
+
+    /* HEADER */
+    .header {
+      background-color: var(--salmon);
+      padding: 1.5rem 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 2.5rem;
+      color: var(--blanco);
+      font-weight: normal;
+    }
+
+    .btn-header {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      background-color: var(--dorado);
+      color: var(--blanco);
+      padding: 0.5rem 2rem;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .btn-header:hover {
+      background-color: var(--dorado);
+      box-shadow: 0 4px 8px var(--marron);
+    }
+
+    /* NAVEGACIÓN */
+    .navegacion {
+      background-color: var(--salmon);
+      padding: 1rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navegacion a {
+      color: var(--blanco);
+      text-decoration: none;
+      margin: 0 2rem;
+      font-size: 1rem;
+    }
+
+    .navegacion a:hover {
+      color: var(--dorado);
+    }
+
+    /* HERO */
+    .hero {
+      background-color: var(--crema);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: 3rem;
+      color: var(--marron);
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--marron);
+      font-size: 1.1rem;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .contenedor {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* GRID DE 2 COLUMNAS */
+    .grid-contacto {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-contacto {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    /* TARJETA DE FORMULARIO */
+    .tarjeta-form {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(90, 75, 64, 0.1);
+    }
+
+    /* CAMPOS DEL FORMULARIO (Bootstrap) */
+    .form-control {
+      background-color: var(--crema);
+      border: 1px solid var(--dorado);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-bottom: 1.5rem;
+      width: 100%;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--dorado);
+      box-shadow: 0 0 0 3px rgba(201, 161, 74, 0.2);
+    }
+
+    label {
+      display: block;
+      color: var(--marron);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* BOTÓN DE ENVÍO */
+    .btn-enviar {
+      background-color: var(--dorado);
+      color: var(--blanco);
+      border: none;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: block;
+      margin: 2rem auto 0;
+      box-shadow: 0 4px 12px rgba(201, 161, 74, 0.3);
+    }
+
+    .btn-enviar:hover {
+      box-shadow: 0 6px 20px var(--marron);
+    }
+
+    /* TARJETA DE INFO */
+    .tarjeta-info {
+      background-color: var(--crema);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .icono-telefono {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .info-item {
+      color: var(--marron);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer-espacio {
+      background-color: var(--salmon);
+      height: 150px;
+    }
+
+    .footer-info {
+      background-color: var(--marron);
+      padding: 2rem;
+      color: var(--beige);
+      text-align: center;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 2fr 1fr;
+      }
+
+      .footer-izq {
+        text-align: left;
+      }
+
+      .footer-der {
+        text-align: right;
+      }
+    }
+
+    .logo-footer {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--dorado);
+      color: var(--dorado);
+      text-align: center;
+      line-height: 36px;
+      font-family: Georgia, serif;
+      font-size: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--beige);
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--dorado);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER CON TOP BAR DE FOUNDATION -->
+<header class="header top-bar">
+  <h1 class="logo">Brillo Eterno</h1>
+  <a href="#contacto" class="btn-header">Contacto</a>
+</header>
+
+<!-- NAVEGACIÓN -->
+<nav class="navegacion">
+  <a href="#" class="hover:text-[#C9A14A]">Home</a>
+  <a href="#" class="hover:text-[#C9A14A]">Productos</a>
+  <a href="#" class="hover:text-[#C9A14A]">Formularios</a>
+  <a href="#contacto" class="hover:text-[#C9A14A]">Contacto</a>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <h1>Contáctanos</h1>
+  <p>Estamos aquí al aperúdate el encontrar el joya perfecta.</p>
+</section>
+
+<!-- SECCIÓN DE CONTACTO -->
+<section id="contacto" class="contenedor">
+  <div class="grid-contacto grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8">
+
+    <!-- FORMULARIO -->
+    <div class="tarjeta-form">
+      <form>
+        <div>
+          <label>Nombre Completo</label>
+          <input type="text" class="form-control form-control-lg">
+        </div>
+
+        <div>
+          <label>Correo Electrónico</label>
+          <input type="email" class="form-control form-control-lg">
+        </div>
+
+        <div>
+          <label>Teléfono</label>
+          <input type="tel" class="form-control form-control-lg">
+        </div>
+
+        <div>
+          <label>Asunto</label>
+          <input type="text" class="form-control form-control-lg">
+        </div>
+
+        <div>
+          <label>Tu Mensaje</label>
+          <textarea class="form-control form-control-lg" rows="4"></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+      </form>
+    </div>
+
+    <!-- INFO DE CONTACTO -->
+    <div class="tarjeta-info">
+      <div class="icono-telefono">
+        <svg fill="#C9A14A" viewBox="0 0 24 24">
+          <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
+        </svg>
+      </div>
+
+      <div class="info-item">
+        <strong>Teléfono:</strong> +12 3456 780
+      </div>
+
+      <div class="info-item">
+        <strong>Email:</strong> info@bsleterno.com
+      </div>
+
+      <div class="info-item" style="margin-top: 2rem;">
+        <strong>Slogan:</strong> La belleza de eterna.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-espacio"></div>
+
+  <div class="footer-info">
+    <div class="footer-grid">
+      <div class="footer-izq">
+        <span class="logo-footer">M</span>
+      </div>
+
+      <div class="footer-centro">
+        <p>© 2024 Brillo Eterno. Todos es derdidos reservdo.</p>
+      </div>
+
+      <div class="footer-der">
+        <div class="footer-links">
+          <a href="#" class="hover:text-[#C9A14A]">Home</a>
+          <a href="#" class="hover:text-[#C9A14A]">About</a>
+          <a href="#" class="hover:text-[#C9A14A]">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
