@@ -136,3 +136,111 @@ h1, h2, h3 {
   color: #fff;
   font-size: 0.9rem;
 }
+
+/* Paleta (coincide con tu consigna) */
+:root{
+  --bg-main:#EEC5AF;
+  --text-main:#FFFFFF;
+  --text-soft:#E8D7C8;
+  --gold:#C9A14A;
+  --shadow:#5A4B40;
+  --bg-neutral:#F4E9E2;
+}
+
+/* Layout del detalle */
+.container-detalle{
+  max-width:1100px; margin:0 auto; padding:32px 16px;
+  display:grid; gap:28px; grid-template-columns:1fr 1fr;
+}
+.detail-main{ width:100%; border-radius:16px; box-shadow:0 8px 24px rgba(90,75,64,.12); }
+.thumbs{ display:flex; gap:10px; margin-top:10px; }
+.thumbs img{ width:80px; height:80px; object-fit:cover; border-radius:10px; border:2px solid var(--bg-main); }
+
+.subtitle{ color:var(--shadow); opacity:.8; margin:.25rem 0 1rem; }
+.price{ font-size:1.6rem; font-weight:700; color:var(--gold); margin-bottom:1rem; }
+
+/* Mostrar solo el producto seleccionado o si una imagen interna está activa */
+.detail {
+  display: none;
+}
+
+/* Mostrar el producto seleccionado directamente */
+.detail:target {
+  display: block;
+}
+
+/* Mostrar el producto si contiene una imagen que está como target (#imgX-X) */
+.detail:has(.detail-main:target) {
+  display: block;
+}
+
+/* Ocultar el mensaje si hay un producto activo */
+.detail:target ~ .no-target-msg,
+.detail:has(.detail-main:target) ~ .no-target-msg {
+  display: none;
+}
+/* Responsive */
+@media (max-width: 768px){
+  .container-detalle{ grid-template-columns:1fr; }
+}
+
+.materiales {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: #5a4634;
+}
+.materiales li {
+  margin-bottom: 5px;
+}
+.materiales strong {
+  color: #3c2a1e;
+}
+
+/* ===== Viewer: mostrar 1 imagen según :target ===== */
+.left .viewer { position: relative; }
+
+.left .viewer .detail-main {
+  display: none;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+
+/* Si NO hay :target dentro del viewer, se muestra la primera */
+.left .viewer:not(:has(.detail-main:target)) .detail-main:first-of-type {
+  display: block;
+}
+
+/* Cuando hay una imagen con :target, se muestra esa */
+.left .viewer .detail-main:target {
+  display: block;
+}
+
+/* Miniaturas */
+.thumbs {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.thumbs a.thumb {
+  display: inline-block;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 4px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  transition: transform .15s ease, border-color .15s ease;
+}
+.thumbs a.thumb:hover { transform: translateY(-2px); border-color: #d6b28f; }
+.thumbs img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
+
+html {
+  scroll-behavior: auto;
+}
+:target {
+  scroll-margin-top: 0;
+}
+
