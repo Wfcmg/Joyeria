@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brillo Eterno - Pago</title>
 
 
 </head>
@@ -52,6 +53,15 @@
   </div>
 
 </footer>
+
+<!-- SCRIPT DE PAGO EXITOSO -->
+<script>
+  document.getElementById('pagoForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("Pago exitoso. Su compra ha sido procesada con éxito.");
+    window.location.href = "index.html";
+  });
+</script>
 
 </body>
 </html>
