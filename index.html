@@ -12,7 +12,15 @@
 
   <!-- CSS externo -->
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .nuevos{
+      background-color: blue;
+    }
+
+  </style>
 </head>
+
 
 <body>
 
@@ -32,8 +40,6 @@
         <li class="nav-item"><a class="btn btn-contacto ms-2" href="carrito.html">Carrito</a></li>
       </ul>
     </div>
-  <div class="hint">
-    Tip: abre la consola del navegador (F12) para ver logs.
   </div>
 </nav>
 
@@ -44,13 +50,17 @@
     <div class="contenido">
       <h1>Colección Destacada</h1>
       <p>Anillos, Collares, Pulseras Exclusivas</p>
+
+
     </div>
   </div>
+
 </section>
 
 <!-- FRASE -->
 <section class="frase text-center my-4">
   <p><em>La belleza es eterna. Descubre tu brillo.</em></p>
+
 </section>
 
 <!-- BOTONES -->
@@ -59,16 +69,12 @@
   <a href="productos.html" class="btn boton-personalizado">Explorar Productos</a>
   <a href="contacto.html" class="btn boton-personalizado">Contactar</a>
 </section>
-  btn.addEventListener('click', () => {
-    n++;
-    count.textContent = n;
-    console.log(`Clicks: ${n}`);
-  });
+
 
 <!-- FOOTER -->
 <footer class="footer text-center py-3">
   <p>  2025 Brillo Eterno. Todos los derechos reservados.</p>
 </footer>
-
+<script> src='js/vendor/dom.js'</script>
  </body>
 </html>
