@@ -237,5 +237,44 @@ function configurarGaleriaProducto(seccion) {
       thumb.classList.add('is-active');
     });
   });
-}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Detectar todos los botones "Añadir al carrito"
+    const botones = document.querySelectorAll('.boton-personalizado');
 
+    botones.forEach(boton => {
+      boton.addEventListener('click', () => {
+
+        // Verificamos si el botón está dentro de un producto (tiene clase .right)
+        const producto = boton.closest('.right');
+        if (!producto) {
+          // Si no está dentro de un producto (como el botón "Volver"), no hace nada.
+          return;
+        }
+
+        // Obtener datos del producto
+        const nombre = producto.querySelector('h1').innerText;
+        const precio = parseFloat(producto.querySelector('.price').innerText.replace('$', ''));
+        const imagen = producto.parentElement.querySelector('.viewer img').src;
+
+        // Crear objeto del producto
+        const nuevoProducto = { nombre, precio, cantidad: 1, imagen };
+
+        // Leer carrito actual desde localStorage
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        // Verificar si ya existe
+        const existente = carrito.find(p => p.nombre === nombre);
+        if (existente) {
+          existente.cantidad += 1;
+        } else {
+          carrito.push(nuevoProducto);
+        }
+
+        // Guardar carrito actualizado
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
+        // Avisar al usuario
+        alert(`${nombre} fue añadido al carrito.`);
+      });
+    });
+}
