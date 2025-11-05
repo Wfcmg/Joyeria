@@ -1,273 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Detalle de Producto | Brillo Eterno</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <link rel="stylesheet" href="css/style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detalle de Producto | Brillo Eterno</title>
+<!------------------------------------------------------------------------------------------------------------------------------------------>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!------------------------------------------------------------------------------------------------------------------------------------------>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+<!------------------------------------------------------------------------------------------------------------------------------------------>
 <body>
-
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-bold tittle-navbar" href="index.html">Brillo Eterno</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
-        <li class="nav-item"><a class="btn btn-contacto ms-2" href="contacto.html">Contacto</a></li>
-        <li class="nav-item"><a class="btn btn-contacto ms-2" href="carrito.html">Carrito</a></li>
-      </ul>
+  <!-- Barra de navegación princpial es decir el de hamburguesa, muestra el nombre "Brillo Eterno" y los enlaces
+  a Home, Productos, Contacto y Carrito, adaptándose a pantallas grandes y pequeñas. -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar shadow-sm">
+    <div class="container">
+<!------------------------------------------------------------------------------------------------------------------------------------------>
+      <a class="navbar-brand fw-bold tittle-navbar" href="index.html">Brillo Eterno</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+<!------------------------------------------------------------------------------------------------------------------------------------------>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+            <li class="nav-item"><a class="btn btn-contacto ms-2" href="contacto.html">Contacto</a></li>
+            <li class="nav-item"><a class="btn btn-contacto ms-2" href="carrito.html">Carrito</a></li>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+          </ul>
+        </div>
     </div>
+  </nav>
+  <!-- Contenedor con el botón "Volver" que regresa a la página de listado de
+  productos, para que el usuario pueda salir fácilmente del detalle. -->
+  <div class="container" style="margin-top: 20px;">
+    <a href="productos.html" class="btn boton-personalizado btn-sm">← Volver</a>
   </div>
-</nav>
-
-
-
-<div class="container" style="margin-top: 20px;">
-  <a href="productos.html" class="btn boton-personalizado btn-sm">← Volver</a>
-</div>
-
-<section class="text-center py-5">
-  <h1 class="titulo-productos">Detalle del producto</h1>
-  <p class="subtitulo-productos">Joyas diseñadas con elegancia y perfección</p>
-</section>
-
-
-<section id="p1" class="detail section--neutral">
-  <div class="container-detalle">
-    <div class="left">
-      <div class="viewer">
-        <img id="img1-1" src="img/producto1.jpg" class="detail-main" alt="Producto 1 vista 1">
-        <img id="img1-2" src="img/producto1.2.jpg" class="detail-main" alt="Producto 1 vista 2">
-        <img id="img1-3" src="img/producto1.3.jpg" class="detail-main" alt="Producto 1 vista 3">
-      </div>
-
-      <div class="thumbs">
-        <a class="thumb" href="#img1-1"><img src="img/producto1.jpg" alt=""></a>
-        <a class="thumb" href="#img1-2"><img src="img/producto1.2.jpg" alt=""></a>
-        <a class="thumb" href="#img1-3"><img src="img/producto1.3.jpg" alt=""></a>
-      </div>
-    </div>
-
-    <div class="right">
-      <h1 class="tittle-navbar">Anillo "Eternidad Solitaria"</h1>
-      <p class="subtitle">Un diseño sobrio y moderno con un diamante de corte brillante en montura solitaria.</p>
-
-      <h3 class="mt-4">Materiales</h3>
-      <ul class="materiales">
-        <li><strong>Metal:</strong> Aleación de platino 950 o acero quirúrgico pulido espejo, resistente al desgaste y la oxidación.</li>
-        <li><strong>Piedra principal:</strong> Zirconia cúbica premium de 1 quilate (simula un diamante con gran brillo y pureza).</li>
-        <li><strong>Montura:</strong> Estilo solitario de cuatro garras finas, que permite máxima entrada de luz para realzar el destello.</li>
-        <li><strong>Acabado:</strong> Pulido de alto brillo con textura suave al tacto, libre de níquel e hipoalergénico.</li>
-      </ul>
-
-      <h3 class="mt-4">Descripción</h3>
-      <p>
-        El <em>“Eternidad Solitaria”</em> representa la esencia del amor atemporal en su forma más pura.
-        Su diseño minimalista resalta la belleza de la piedra central, evocando pureza y compromiso sin exceso.
-        Fabricado con materiales duraderos y de alta calidad, es ideal tanto para uso diario como para ocasiones especiales.
-        Su brillo limpio y su perfil elegante lo convierten en un clásico moderno dentro de la joyería contemporánea.
-      </p>
-
-      <div class="price mt-3">$120</div>
-      <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
-    </div>
-  </div>
-</section>
-
-<section id="p2" class="detail section--neutral">
-  <div class="container-detalle">
-    <div class="left">
-      <div class="viewer">
-        <img id="img2-1" src="img/producto2.jpg" class="detail-main" alt="Producto 2 vista 1">
-        <img id="img2-2" src="img/producto2.2.jpg" class="detail-main" alt="Producto 2 vista 2">
-        <img id="img2-3" src="img/producto2.3.jpg" class="detail-main" alt="Producto 2 vista 3">
-      </div>
-
-      <div class="thumbs">
-        <a class="thumb" href="#img2-1"><img src="img/producto2.jpg" alt=""></a>
-        <a class="thumb" href="#img2-2"><img src="img/producto2.2.jpg" alt=""></a>
-        <a class="thumb" href="#img2-3"><img src="img/producto2.3.jpg" alt=""></a>
-      </div>
-    </div>
-    <div class="right">
-      <h1 class="tittle-navbar">Colgante "Aura de Esmeralda"</h1>
-      <p class="subtitle">Lujo atemporal. Una esmeralda central rodeada de destellos de luz pura.</p>
-
-      <h3 class="mt-4">Materiales</h3>
-      <ul class="materiales">
-        <li><strong>Metal:</strong> Plata esterlina 925 de alta pureza, con acabado de brillo espejo y tratamiento antidesgaste.</li>
-        <li><strong>Piedra central:</strong> Esmeralda sintética tallada en forma cushion (cojín), con un tono verde intenso y reflejos naturales.</li>
-        <li><strong>Piedras secundarias:</strong> Zirconias cúbicas transparentes engastadas alrededor del marco, imitando el brillo del diamante.</li>
-        <li><strong>Cadena:</strong> Tipo cable fina de 45 cm, resistente y con cierre de anillo seguro.</li>
-        <li><strong>Acabado:</strong> Baño de rodio que protege contra la oxidación y realza el brillo plateado.</li>
-      </ul>
-
-      <h3 class="mt-4">Descripción</h3>
-      <p>
-        El <em>“Aura de Esmeralda”</em> combina la elegancia clásica con un toque moderno.
-        Su piedra central de verde vibrante simboliza la esperanza, la armonía y la renovación,
-        mientras el halo de gemas transparentes amplifica su luminosidad natural.
-        Cada detalle ha sido cuidadosamente trabajado para ofrecer una pieza equilibrada,
-        ligera y cómoda de usar, perfecta para realzar cualquier atuendo con un toque de distinción y encanto.
-      </p>
-
-      <div class="price mt-3">$150</div>
-      <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
-    </div>
-  </div>
-</section>
-
-<section id="p3" class="detail section--neutral">
-  <div class="container-detalle">
-    <div class="left">
-      <div class="viewer">
-        <img id="img3-1" src="img/producto3.jpg" class="detail-main" alt="Producto 3 vista 1">
-        <img id="img3-2" src="img/producto3.2.jpg" class="detail-main" alt="Producto 3 vista 2">
-        <img id="img3-3" src="img/producto3.3.jpg" class="detail-main" alt="Producto 3 vista 3">
-      </div>
-
-      <div class="thumbs">
-        <a class="thumb" href="#img3-1"><img src="img/producto3.jpg" alt=""></a>
-        <a class="thumb" href="#img3-2"><img src="img/producto3.2.jpg" alt=""></a>
-        <a class="thumb" href="#img3-3"><img src="img/producto3.3.jpg" alt=""></a>
-      </div>
-    </div>
-    <div class="right">
-      <h1 class="tittle-navbar">Brazalete "Luz Constelación"</h1>
-      <p class="subtitle">Elegancia versátil. Una línea de destellos que envuelve la muñeca con luz y sofisticación.</p>
-
-      <h3 class="mt-4">Materiales</h3>
-      <ul class="materiales">
-        <li><strong>Metal:</strong> Plata esterlina 925 bañada en rodio, que garantiza brillo intenso y resistencia al desgaste.</li>
-        <li><strong>Piedras:</strong> Zirconias cúbicas transparentes de 3 mm cada una, engastadas con precisión en montura de cuatro garras.</li>
-        <li><strong>Diseño:</strong> Estilo <em>tennis bracelet</em>, articulado para ofrecer flexibilidad y comodidad al movimiento.</li>
-        <li><strong>Cierre:</strong> Tipo caja con doble seguridad invisible, discreto y elegante.</li>
-        <li><strong>Acabado:</strong> Pulido de alto brillo, libre de níquel e hipoalergénico.</li>
-      </ul>
-
-      <h3 class="mt-4">Descripción</h3>
-      <p>
-        El <em>“Luz Constelación”</em> es una joya que captura la esencia de la elegancia atemporal.
-        Cada piedra ha sido cuidadosamente seleccionada para reflejar la luz de manera uniforme,
-        evocando una constelación que brilla sobre la piel. Su diseño clásico y adaptable lo convierte en el complemento ideal
-        para atuendos formales o casuales, aportando un toque de distinción sin exceso.
-        Ligero, cómodo y refinado, este brazalete representa la unión perfecta entre artesanía y belleza.
-      </p>
-
-      <div class="price mt-3">$180</div>
-      <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
-    </div>
-  </div>
-</section>
-
-<section id="p4" class="detail section--neutral">
-  <div class="container-detalle">
-    <div class="left">
-      <div class="viewer">
-        <img id="img4-1" src="img/producto4.jpg" class="detail-main" alt="Producto 4 vista 1">
-        <img id="img4-2" src="img/producto4.2.jpg" class="detail-main" alt="Producto 4 vista 2">
-        <img id="img4-3" src="img/producto4.3.jpg" class="detail-main" alt="Producto 4 vista 3">
-      </div>
-
-      <div class="thumbs">
-        <a class="thumb" href="#img4-1"><img src="img/producto4.jpg" alt=""></a>
-        <a class="thumb" href="#img4-2"><img src="img/producto4.2.jpg" alt=""></a>
-        <a class="thumb" href="#img4-3"><img src="img/producto4.3.jpg" alt=""></a>
-      </div>
-    </div>
-    <div class="right">
-      <h1 class="tittle-navbar">Pendientes "Perla Serena"</h1>
-      <p class="subtitle">Gracia natural. Perlas cultivadas con brillo sedoso y elegancia eterna.</p>
-
-      <h3 class="mt-4">Materiales</h3>
-      <ul class="materiales">
-        <li><strong>Metal:</strong> Plata esterlina 925 o platino, ambos hipoalergénicos y resistentes a la oxidación.</li>
-        <li><strong>Piedra principal:</strong> Perlas cultivadas de agua dulce, diámetro de 8 mm, seleccionadas por su forma redonda y lustre natural.</li>
-        <li><strong>Montura:</strong> Sistema de cuatro garras discretas que asegura la perla sin afectar su superficie.</li>
-        <li><strong>Cierre:</strong> Tipo mariposa clásico, cómodo y seguro para uso prolongado.</li>
-        <li><strong>Acabado:</strong> Pulido espejo que resalta el contraste entre el brillo metálico y la suavidad nacarada.</li>
-      </ul>
-
-      <h3 class="mt-4">Descripción</h3>
-      <p>
-        Los pendientes <em>“Perla Serena”</em> representan la pureza y la armonía en su máxima expresión.
-        Cada perla ha sido cuidadosamente seleccionada por su tono uniforme, superficie lisa y brillo natural.
-        Su diseño minimalista permite que la belleza de la perla sea la protagonista, mientras la montura metálica aporta soporte y un toque moderno.
-        Son ideales para ocasiones formales, pero también complementan con sutileza un look cotidiano lleno de refinamiento.
-      </p>
-
-      <div class="price mt-3">$210</div>
-      <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
-    </div>
-
-  </div>
-</section>
-
-<section id="p5" class="detail section--neutral">
-  <div class="container-detalle">
-    <div class="left">
-      <div class="viewer">
-        <img id="img5-1" src="img/producto5.jpg" class="detail-main" alt="Producto 5 vista 1">
-        <img id="img5-2" src="img/producto5.2.jpg" class="detail-main" alt="Producto 5 vista 2">
-        <img id="img5-3" src="img/producto5.3.jpg" class="detail-main" alt="Producto 5 vista 3">
-      </div>
-
-      <div class="thumbs">
-        <a class="thumb" href="#img5-1"><img src="img/producto5.jpg" alt=""></a>
-        <a class="thumb" href="#img5-2"><img src="img/producto5.2.jpg" alt=""></a>
-        <a class="thumb" href="#img5-3"><img src="img/producto5.3.jpg" alt=""></a>
-      </div>
-    </div>
-    <div class="right">
-      <h1 class="tittle-navbar">Reloj "Tempo Rosado"</h1>
-      <p class="subtitle">Fusión de estilo. Elegancia en oro rosa y la serenidad del nácar iridiscente.</p>
-
-      <h3 class="mt-4">Materiales</h3>
-      <ul class="materiales">
-        <li><strong>Metal:</strong> Acero inoxidable con baño de oro rosa, resistente a la corrosión y con acabado pulido espejo.</li>
-        <li><strong>Esfera:</strong> Nácar natural iridiscente, con índices brillantes engastados en cristal transparente.</li>
-        <li><strong>Bisel:</strong> Aro con incrustaciones de zirconias cúbicas que aportan destellos sutiles y reflejos de luz.</li>
-        <li><strong>Mecanismo:</strong> Movimiento de cuarzo japonés de alta precisión con batería de larga duración.</li>
-        <li><strong>Correa:</strong> Eslabones sólidos con cierre mariposa oculto, cómodo y seguro.</li>
-      </ul>
-
-      <h3 class="mt-4">Descripción</h3>
-      <p>
-        El reloj <em>“Tempo Rosado”</em> combina la delicadeza del diseño femenino con la sofisticación de la relojería moderna.
-        Su tono cálido de oro rosa contrasta armónicamente con el brillo perlado del nácar, evocando elegancia y serenidad.
-        Cada detalle, desde las incrustaciones del bisel hasta el suave brillo metálico, refleja un equilibrio entre lujo y sutileza.
-        Ideal para quienes buscan un accesorio funcional que a la vez proyecte distinción y estilo atemporal.
-      </p>
-
-      <div class="price mt-3">$240</div>
-      <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
-    </div>
-
-  </div>
-</section>
-
-
-<section class="detail no-target-msg section--neutral">
-  <div class="container-detalle">
-    <p>Elige un producto desde el catálogo para ver sus detalles.</p>
-    <a class="btn boton-personalizado" href="productos.html">Ir al catálogo</a>
-  </div>
-</section>
-
-<footer class="footer text-center py-3">
-  <p>2025 Brillo Eterno. Todos los derechos reservados.</p>
-</footer>
-
-</body>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+  <!-- Sección de encabezado del detalle: muestra el título "Detalle del producto" y una
+  frase descriptiva, centradas y con espacio vertical para dar protagonismo visual. -->
+  <section class="text-center py-5">
+    <h1 class="titulo-productos">Detalle del producto</h1>
+    <p class="subtitulo-productos">Joyas diseñadas con elegancia y perfección</p>
+  </section>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+  <!-- Área vacía (main con id "detalle-root") donde el archivo detalle.js insertará dinámicamente
+  toda la información del producto seleccionado (imágenes, texto, precio, etc.). -->
+  <main id="detalle-root"></main>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Enlace al archivo JavaScript que contiene la lógica para cargar
+  y mostrar el detalle del producto dentro de "detalle-root". -->
+  <script src="js/detalle.js"></script>
+  </body>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+<!-- Pie de página del sitio muestra los derechos reservados y
+visual en todas las páginas de "Brillo Eterno". -->
+  <footer class="footer text-center py-3">
+    <p>2025 Brillo Eterno. Todos los derechos reservados.</p>
+  </footer>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
 </html>
