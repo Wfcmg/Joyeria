@@ -83,22 +83,32 @@ button.addEventListener("click", function(event) {
 
 
 // === 10. EVENTO SUBMIT DEL FORMULARIO ===
-// Este evento maneja el envío real del formulario, evitando que la página se recargue.
-// Se valida que el campo de correo no esté vacío y luego se simula el envío del correo.
+// Este evento controla el envío del formulario y valida los datos antes de simular el envío del enlace de recuperación.
 form.addEventListener("submit", function(event) {
-  event.preventDefault(); // Previene la recarga por defecto del navegador.
+  event.preventDefault(); // evita la recarga por defecto
 
-  const correo = inputCorreo.value.trim(); // Captura y limpia el valor del campo.
-  if (!correo) { // Si el campo está vacío, muestra un mensaje de error.
+  const correo = inputCorreo.value.trim();
+
+  // === VALIDACIONES ===
+
+  // 1. Verificar que el campo no esté vacío
+  if (!correo) {
     mostrarMensaje("Por favor, ingresa tu correo electrónico.", false);
     return;
   }
 
-  // Simulación del envío del enlace de recuperación con un pequeño retardo (1 segundo).
+  // 2. Validar formato del correo electrónico
+  const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!patronCorreo.test(correo)) {
+    mostrarMensaje("El formato del correo electrónico no es válido.", false);
+    return;
+  }
+
+  // === SIMULACIÓN DE ENVÍO ===
   setTimeout(function() {
     mostrarMensaje("Se ha enviado un enlace de recuperación a tu correo.", true);
 
-    // Luego de mostrar el mensaje, redirige automáticamente al login después de 2 segundos.
+    // Redirección después de unos segundos
     setTimeout(function() {
       window.location.href = "login.html";
     }, 2000);

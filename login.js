@@ -124,26 +124,39 @@ button.addEventListener("click", function(event) {
 
 
 // === 11. EVENTO SUBMIT ===
-// Controla el envío del formulario. Previene la recarga automática del navegador.
-// Luego valida que los campos no estén vacíos y simula un proceso de inicio de sesión.
+// Controla el envío del formulario. Previene la recarga automática y valida los campos antes de simular el inicio de sesión.
 form.addEventListener("submit", function(event) {
-  event.preventDefault(); // evita la recarga por defecto del formulario.
+  event.preventDefault(); // evita que la página se recargue por defecto
 
-  // Se obtienen los valores de los campos, eliminando espacios innecesarios con trim().
   const correo = inputCorreo.value.trim();
   const password = inputPass.value.trim();
 
-  // Validación simple: si falta algún campo, se muestra un mensaje de error.
+  // === VALIDACIONES ===
+
+  // 1. Verificar que los campos no estén vacíos
   if (!correo || !password) {
-    mostrarMensaje("Completa ambos campos antes de continuar.", false);
+    mostrarMensaje("Por favor, completa ambos campos antes de continuar.", false);
     return;
   }
 
-  // Simulación del proceso de inicio de sesión (como si verificara los datos con un servidor).
+  // 2. Validar el formato del correo electrónico
+  const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!patronCorreo.test(correo)) {
+    mostrarMensaje("El formato del correo electrónico no es válido.", false);
+    return;
+  }
+
+  // 3. Validar longitud mínima de contraseña
+  if (password.length < 6) {
+    mostrarMensaje("La contraseña debe tener al menos 6 caracteres.", false);
+    return;
+  }
+
+  // === SIMULACIÓN DE INICIO DE SESIÓN ===
   setTimeout(function() {
     mostrarMensaje("Inicio de sesión exitoso. Bienvenido/a a Brillo Eterno.", true);
 
-    // Luego de mostrar el mensaje, se redirige automáticamente a la página principal.
+    // Redirección con window.location.href
     setTimeout(function() {
       window.location.href = "index.html";
     }, 1500);

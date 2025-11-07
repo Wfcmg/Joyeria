@@ -97,13 +97,34 @@ button.addEventListener("click", function(event) {
 form.addEventListener("submit", function(event) {
   event.preventDefault(); // evita la recarga por defecto.
 
-  // Capturamos los valores escritos por el usuario.
-  const nombre = document.getElementById("nombre").value;
-  const correo = document.getElementById("correo").value;
-  const mensaje = document.getElementById("mensaje").value;
+  // Capturamos los valores escritos por el usuario y quitamos espacios sobrantes
+  const nombre = document.getElementById("nombre").value.trim();
+  const correo = document.getElementById("correo").value.trim();
+  const mensaje = document.getElementById("mensaje").value.trim();
 
-  // Mostramos una alerta básica (puede sustituirse luego por validaciones o mensajes visuales).
-  alert("Formulario enviado");
+  // === VALIDACIONES ===
+
+  // 1. Verificar que todos los campos estén llenos
+  if (!nombre || !correo || !mensaje) {
+    alert("Por favor, completa todos los campos antes de enviar.");
+    return;
+  }
+
+  // 2. Validar el formato del correo electrónico
+  const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!patronCorreo.test(correo)) {
+    alert("El formato del correo electrónico no es válido.");
+    return;
+  }
+
+  // 3. Validar que el mensaje tenga una longitud mínima
+  if (mensaje.length < 10) {
+    alert("El mensaje debe tener al menos 10 caracteres.");
+    return;
+  }
+
+  // Si todas las validaciones pasan correctamente
+  alert("Formulario enviado correctamente.");
 });
 
 
