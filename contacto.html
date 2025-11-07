@@ -12,16 +12,12 @@
   <!-- CSS externo -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<!-- NAVBAR (idéntico al index) -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar shadow-sm">
-  <div class="container">
+<!-- NAVBAR -->
+<nav class="navbar navbar-light bg-light custom-navbar shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center">
     <a class="navbar-brand fw-bold tittle-navbar" href="#">Brillo Eterno</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
@@ -36,7 +32,6 @@
 
 <!-- HERO SECTION -->
 <section class="hero position-relative text-center text-white">
-  <!-- BOTÓN REGRESAR sobre la imagen -->
   <a href="index.html"
      class="btn boton-personalizado position-absolute"
      style="top: 20px; left: 20px; z-index: 10;">← Regresar</a>
@@ -57,70 +52,33 @@
 <!-- SECCIÓN DE CONTACTO -->
 <section class="container my-5">
   <div class="row">
-
-    <!-- FORMULARIO -->
+    <!-- FORMULARIO JS -->
     <div class="col-md-8">
-      <div class="p-4 bg-white rounded shadow-sm">
-        <form>
-          <div class="mb-3">
-            <label class="form-label">Nombre Completo</label>
-            <input type="text" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Teléfono</label>
-            <input type="tel" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Asunto</label>
-            <input type="text" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Tu Mensaje</label>
-            <textarea class="form-control" rows="4"></textarea>
-          </div>
-
-          <button type="submit" class="btn boton-personalizado w-100">Enviar Mensaje</button>
-        </form>
-      </div>
+      <div id="formulario-contacto" class="p-4 bg-white rounded shadow-sm"></div>
     </div>
 
     <!-- INFO DE CONTACTO -->
     <div class="col-md-4">
       <div class="p-4 bg-white rounded shadow-sm">
         <h3 style="color: #6a5242; margin-bottom: 1.5rem; font-size: 1.3rem;">Información de Contacto</h3>
-
-        <p style="color: #6a5242; margin-bottom: 1rem;">
-          <strong>Teléfono:</strong><br>
-          +12 3456 780
-        </p>
-
-        <p style="color: #6a5242; margin-bottom: 1rem;">
-          <strong>WhatsApp:</strong><br>
-          +593 99 123 4567
-        </p>
-
-        <p style="color: #6a5242; margin-bottom: 1rem;">
-          <strong>Email:</strong><br>
-          info@brilloeterno.com
-        </p>
+        <p style="color: #6a5242; margin-bottom: 1rem;"><strong>Teléfono:</strong><br>+12 3456 780</p>
+        <p style="color: #6a5242; margin-bottom: 1rem;"><strong>WhatsApp:</strong><br>+593 99 123 4567</p>
+        <p style="color: #6a5242; margin-bottom: 1rem;"><strong>Email:</strong><br>info@brilloeterno.com</p>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- FOOTER (idéntico al index) -->
+<!-- FOOTER -->
 <footer class="footer text-center py-3">
   <p>2025 Brillo Eterno. Todos los derechos reservados.</p>
 </footer>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+<!-- JS externo -->
+<script src="contacto.js"></script>
+<!-- Tu archivo JS -->
+<script src="js/app.js"></script>
 </body>
 </html>
