@@ -175,27 +175,59 @@ button.addEventListener("click", function(event) {
 
 
 // === 12. EVENTO SUBMIT ===
-// Controla el envío del formulario, evita que se recargue la página y valida los campos básicos.
+// Este evento controla el envío del formulario, valida los campos y simula el procesamiento del pago.
 form.addEventListener("submit", function(event) {
-  event.preventDefault(); // Evita que el formulario recargue la página por defecto.
+  event.preventDefault(); // evita que la página se recargue por defecto
 
-  // Se obtienen algunos valores para validar que el usuario no haya dejado campos vacíos.
+  // Capturamos los valores ingresados por el usuario
   const nombre = document.getElementById("nombre").value.trim();
   const correo = document.getElementById("correo").value.trim();
   const direccion = document.getElementById("direccion").value.trim();
   const tarjeta = document.getElementById("tarjeta").value.trim();
+  const expiracion = document.getElementById("expiracion").value.trim();
+  const cvv = document.getElementById("cvv").value.trim();
 
-  // Si alguno está vacío, se muestra un mensaje de error.
-  if (!nombre || !correo || !direccion || !tarjeta) {
-    mostrarMensaje("Por favor, completa todos los campos requeridos.", false);
+  // === VALIDACIONES ===
+
+  // 1. Verificar que los campos obligatorios no estén vacíos
+  if (!nombre || !correo || !direccion || !tarjeta || !expiracion || !cvv) {
+    mostrarMensaje("Por favor, completa todos los campos antes de continuar.", false);
     return;
   }
 
-  // Simulación del proceso de pago con un pequeño retardo (1 segundo).
+  // 2. Validar formato del correo electrónico
+  const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!patronCorreo.test(correo)) {
+    mostrarMensaje("El formato del correo electrónico no es válido.", false);
+    return;
+  }
+
+  // 3. Validar número de tarjeta (mínimo 13 y máximo 19 dígitos)
+  const patronTarjeta = /^[0-9]{13,19}$/;
+  if (!patronTarjeta.test(tarjeta.replace(/\s/g, ""))) {
+    mostrarMensaje("El número de tarjeta no es válido.", false);
+    return;
+  }
+
+  // 4. Validar formato de fecha de expiración (MM/AA)
+  const patronExp = /^(0[1-9]|1[0-2])\/\d{2}$/;
+  if (!patronExp.test(expiracion)) {
+    mostrarMensaje("La fecha de expiración debe tener el formato MM/AA.", false);
+    return;
+  }
+
+  // 5. Validar CVV (3 dígitos)
+  const patronCVV = /^[0-9]{3}$/;
+  if (!patronCVV.test(cvv)) {
+    mostrarMensaje("El código CVV debe tener 3 dígitos.", false);
+    return;
+  }
+
+  // === SIMULACIÓN DE PROCESAMIENTO ===
   setTimeout(function() {
     mostrarMensaje("Pago procesado exitosamente. ¡Gracias por tu compra!", true);
 
-    // Después de mostrar el mensaje, se redirige automáticamente a la página principal.
+    // Redirección después de 2 segundos
     setTimeout(function() {
       window.location.href = "index.html";
     }, 2000);
