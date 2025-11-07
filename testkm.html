@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    var texto1="Hola";
+    let texto2="Hola";
+    const texto3="Hola";
+    console.log(texto1);
+    console.log(texto2);
+    console.log(texto3);
+
+    texto1="mundo";
+    texto2="mundo";
+
+
+    let productos = [
+      {
+        id: 1,
+        nombre: "Laptop ASUS VivoBook",
+        categoria: "Computadoras",
+        precio: 899.99,
+        stock: 15,
+        descripcion: "Portátil liviana con procesador Intel i7 y 16GB RAM.",
+        proveedor: "ASUS",
+        fechaIngreso: "2025-10-10",
+        estado: true
+      },
+      {
+        id: 2,
+        nombre: "Smartphone Samsung Galaxy S24",
+        categoria: "Celulares",
+        precio: 1099.99,
+        stock: 25,
+        descripcion: "Pantalla AMOLED de 6.8 pulgadas y cámara de 200MP.",
+        proveedor: "Samsung",
+        fechaIngreso: "2025-09-20",
+        estado: true
+      },
+      {
+        id: 3,
+        nombre: "Monitor LG UltraWide 34''",
+        categoria: "Monitores",
+        precio: 599.99,
+        stock: 10,
+        descripcion: "Pantalla curva QHD con relación 21:9 ideal para multitarea.",
+        proveedor: "LG",
+        fechaIngreso: "2025-08-15",
+        estado: true
+      },
+      {
+        id: 4,
+        nombre: "Teclado Mecánico Logitech G915 TKL",
+        categoria: "Periféricos",
+        precio: 199.99,
+        stock: 30,
+        descripcion: "Teclado inalámbrico RGB con switches táctiles y diseño premium.",
+        proveedor: "Logitech",
+        fechaIngreso: "2025-07-18",
+        estado: true
+      },
+      {
+        id: 5,
+        nombre: "Mouse Razer DeathAdder V3 Pro",
+        categoria: "Periféricos",
+        precio: 149.99,
+        stock: 40,
+        descripcion: "Mouse inalámbrico ultraligero con sensor óptico Focus Pro 30K.",
+        proveedor: "Razer",
+        fechaIngreso: "2025-07-05",
+        estado: false
+      },
+      {
+        id: 6,
+        nombre: "Impresora HP Smart Tank 750",
+        categoria: "Impresoras",
+        precio: 329.99,
+        stock: 12,
+        descripcion: "Impresora multifuncional con sistema de tinta recargable y Wi-Fi.",
+        proveedor: "HP",
+        fechaIngreso: "2025-06-10",
+        estado: false
+      },
+      {
+        id: 7,
+        nombre: "Tablet Apple iPad Air M2",
+        categoria: "Tablets",
+        precio: 899.99,
+        stock: 20,
+        descripcion: "Pantalla Liquid Retina de 11'' y chip M2 para máximo rendimiento.",
+        proveedor: "Apple",
+        fechaIngreso: "2025-05-25",
+        estado: true
+      },
+      {
+        id: 8,
+        nombre: "Auriculares Sony WH-1000XM5",
+        categoria: "Audio",
+        precio: 449.99,
+        stock: 35,
+        descripcion: "Auriculares con cancelación de ruido y batería de hasta 30 horas.",
+        proveedor: "Sony",
+        fechaIngreso: "2025-05-10",
+        estado: true
+      },
+      {
+        id: 9,
+        nombre: "Disco SSD Kingston NV2 1TB",
+        categoria: "Almacenamiento",
+        precio: 89.99,
+        stock: 50,
+        descripcion: "Unidad NVMe PCIe 4.0 con velocidades de lectura hasta 3500 MB/s.",
+        proveedor: "Kingston",
+        fechaIngreso: "2025-04-22",
+        estado: true
+      },
+      {
+        id: 10,
+        nombre: "Router TP-Link Archer AX6000",
+        categoria: "Redes",
+        precio: 349.99,
+        stock: 18,
+        descripcion: "Router Wi-Fi 6 de alta velocidad con 8 antenas y puertos 2.5G.",
+        proveedor: "TP-Link",
+        fechaIngreso: "2025-03-30",
+        estado: true
+      }
+    ];
+
+  function price (stock,precio){
+    let total= stock*precio;
+    return total;
+  }
+  console.log(price(2,56));
+
+    function totalCarrito(productos) {
+      let total = 0;
+
+      // Primer for: mostrar nombre y precio
+      for (let i = 0; i < productos.length; i++) {
+        setTimeout(() => {
+          let producto = productos[i];
+          console.log(`Producto: ${producto.nombre}`);
+          console.log(`Precio unitario: $${producto.precio.toFixed(2)}`);
+          console.log(`Cantidad: ${producto.stock}`);
+          console.log('--------------------------');
+        }, 500);
+      }
+
+
+      setTimeout(() => {
+        for (let i = 0; i < productos.length; i++) {
+          let producto = productos[i];
+          let subtotal = producto.precio * producto.stock;
+          total += subtotal;
+        }
+        console.log(` Total final del carrito: $${total.toFixed(2)}`);
+      }, productos.length * 1000 + 500);
+    }
+
+    totalCarrito(productos);
+
+
+
+    function verificarStock(producto) {
+      return new Promise((resolve, reject) => {
+        if (producto.estado === true && producto.stock > 0) {
+          resolve(`${producto.nombre} disponible`);
+        } else {
+          reject(`${producto.nombre}  sin stock`);
+        }
+      });
+    }
+
+
+    for (let i = 0; i < productos.length; i++) {
+      verificarStock(productos[i])
+        .then((mensaje) => {
+          console.log(mensaje);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+  async function comprarProductos(productos) {
+      console.log ("Iniciando comprade productos");
+      try {
+        const verificarprd= verificarStock(productos);
+        console.log("Verificado");
+        const  subtotal= producto.precio * producto.stock;
+        console.log(subtotal);
+      } catch (error) {
+        console.error(error);
+      }
+  }
+    
+
+  </script>
+</head>
+<body>
+</body>
+</html>
