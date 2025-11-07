@@ -1,6 +1,6 @@
 // Esperar a que el DOM exista
 document.addEventListener("DOMContentLoaded", () => {
-  // 1) Datos (5 productos). Ajusta rutas de imágenes según tu carpeta /img
+  // 1) Datos
   const productos = [
     {
       id: "p1",
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </footer>
   `;
 
-  // 3) Render de tarjetas desde JS
+  // 3) Render de tarjetas
   const grid = document.getElementById("grid-productos");
 
   const renderProductoCard = (p) => `
@@ -109,13 +109,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   grid.innerHTML = productos.map(renderProductoCard).join("");
 
-  // 4) Cálculo de total (ejemplo de lógica pedida en clase)
+  // 4) Calculo de total
   const calcularTotalInventarioActivos = (lista) =>
     lista.filter(p => p.estado).reduce((acc, p) => acc + p.precio * p.stock, 0);
 
   const total = calcularTotalInventarioActivos(productos);
-  // Lo mostramos en pantalla y también en consola
   const totalEl = document.getElementById("total-inventario");
-  totalEl.textContent = `Total inventario (activos): $${total.toFixed(2)}`;
   console.log("Total inventario (activos): $" + total.toFixed(2));
 });
