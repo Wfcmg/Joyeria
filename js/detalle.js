@@ -1,12 +1,11 @@
-// cuando la estructura html este lista o sea el detalle.html va el js donde buscamos el contenedor principal
-// y construimos dinámicamente el detalle de cada producto dentro de la página
-document.addEventListener('DOMContentLoaded', function () {
+// Cuando la página esté lista
+document.addEventListener('DOMContentLoaded', () => {
+  // Siginifica que esta bsucando el detalle root y el if es si aun no anda la pagina
   const root = document.getElementById('detalle-root');
   if (!root) return;
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Catálogo interno de productos aquí va toda la información de cada joya
-  // (id, número, título, subtítulo, precio, imágenes, materiales y descripción).
-  // Si queremos cambiar textos, nombres o precios, so si tnemos que cambiar algo solo se hace aqui
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Aqui vamos a ahacer un array y generar productos la variable
   const productos = [
     {
       id: 'p1',
@@ -15,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
       subtitulo: 'Un diseño sobrio y moderno con un diamante de corte brillante en montura solitaria.',
       precio: '$120',
       imagenes: ['producto1.jpg', 'producto1.2.jpg', 'producto1.3.jpg'],
+      // arreglo (array), es decir, una lista de varios textos //
       materiales: [
         '<strong>Metal:</strong> Aleación de platino 950 o acero quirúrgico pulido espejo, resistente al desgaste y la oxidación.',
         '<strong>Piedra principal:</strong> Zirconia cúbica premium de 1 quilate (simula un diamante con gran brillo y pureza).',
@@ -115,166 +115,193 @@ document.addEventListener('DOMContentLoaded', function () {
       `
     }
   ];
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Recorremos cada producto del catálogo y generamos su sección de detalle en HTML
-  // para insertarla dentro del contenedor principal (root)
-  productos.forEach(function (prod) {
-    const section = document.createElement('section');
-    section.id = prod.id;
-    section.className = 'detail section--neutral';
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Armamos el bloque de imágenes grandes del producto
-    // Cada imagen tendrá un id único para poder activarla y relacionarla con su miniatura
-    let imgsHTML = '';
-    prod.imagenes.forEach(function (nombreArchivo, index) {
-      const imgId = 'img' + prod.numero + '-' + (index + 1);
-      imgsHTML += `
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // .forEach() sirve para recorrer cada elemento de un array, prod hace que recibe uno de los productos y guardarlo temporalmente en la variable prod
+  productos.forEach((prod) => {
+    // <li></li> significa list item, .map() sirve para recorrer cada elemento del array y transformarlo como ejemplo <li> y join une el resultado
+    const materialesHTML = prod.materiales.map(m => `<li>${m}</li>`).join('');
+    // prod.imagenes es un array (lista) .map tranforma en una etiqueta <img>, index es la posición de la imagen en el arreglo
+    // // 'index' indica la posición de la imagen dentro del array
+    const imagenesHTML = prod.imagenes.map((nombreArchivo, index) => {
+      // const es un dato fijo que usaré más adelante, imgId es simplemente el nombre,
+      // ${index + 1} toma el número de posición de la imagen dentro del array, sumándole 1
+      const imgId = `img${prod.numero}-${index + 1}`;
+      // asigna el identificador o dea el id de la imagen
+      //src es donde se carga la imagen
+      //pone o extrae la clase CSS para aplicar estilos
+      // texto alternativo que describe la imagen
+      return `
         <img id="${imgId}"
              src="img/${nombreArchivo}"
              class="detail-main"
              alt="Producto ${prod.numero} vista ${index + 1}">
       `;
-    });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Creamos las miniaturas (thumbnails) que se mostrarán debajo de la imagen principal
-    // Cada miniatura está vinculada a una imagen grande del mismo producto
-    let thumbsHTML = '';
-    prod.imagenes.forEach(function (nombreArchivo, index) {
-      const imgId = 'img' + prod.numero + '-' + (index + 1);
-      thumbsHTML += `
-        <a class="thumb" href="#${imgId}">
-          <img src="img/${nombreArchivo}" alt="">
-        </a>
-      `;
-    });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Transformamos el arreglo de materiales del producto en una lista <li> para mostrarlo ordenado
-    // dentro de un <ul> en la sección de detalles
-    const materialesHTML = prod.materiales
-      .map((m) => `<li>${m}</li>`)
-      .join('');
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Definimos toda la estructura visual de la sección de detalle:
-    // columna izquierda (galería de imágenes) y columna derecha (título, descripción, materiales, precio y botón).
-    section.innerHTML = `
-      <div class="container-detalle">
-        <div class="left">
-          <div class="viewer">
-            ${imgsHTML}
-          </div>
-          <div class="thumbs">
-            ${thumbsHTML}
-          </div>
-        </div>
-        <div class="right">
-          <h1 class="tittle-navbar">${prod.titulo}</h1>
-          <p class="subtitle">${prod.subtitulo}</p>
+      // Une todas las etiquetas
+    }).join('');
 
-          <h3 class="mt-4">Materiales</h3>
-          <ul class="materiales">
-            ${materialesHTML}
-          </ul>
-          <h3 class="mt-4">Descripción</h3>
-          <p>
-            ${prod.descripcion}
-          </p>
-          <div class="price mt-3">${prod.precio}</div>
-          <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
-        </div>
-      </div>
-    `;
-    // Insertamos la sección completa del producto dentro del contenedor principal "detalle-root".
-    root.appendChild(section);
-  });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Creamos una sección adicional con un mensaje por defecto,
-  // para indicar al usuario que debe elegir un producto desde el catálogo
-  const msgSection = document.createElement('section');
-  msgSection.className = 'detail no-target-msg section--neutral';
-  msgSection.innerHTML = `
-    <div class="container-detalle">
-      <p>Elige un producto desde el catálogo para ver sus detalles.</p>
-      <a class="btn boton-personalizado" href="productos.html">Ir al catálogo</a>
-    </div>
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // .map() transforma cada uno en una etiqueta <a>
+    // es deicr que se están creando las miniaturas (thumbnails) que aparecen debajo de la imagen principal, las chiquitas
+    const thumbsHTML = prod.imagenes.map((nombreArchivo, index) => {
+      // const crea una variable que se usará para enlazar la miniatura con la imagen grande
+      // ${prod.numero} es el número del producto
+      // ${index + 1} es la posición de la imagen
+      const imgId = `img${prod.numero}-${index + 1}`;
+      //<a> la declaramos como "thumb" que apunta al id de la imagen
+      // Dentro de ese enlace se incluye una etiqueta <img> que carga la misma imagen pero la pequeña
+      return `
+    <a class="thumb" href="#${imgId}">
+      <img src="img/${nombreArchivo}" alt="">
+    </a>
   `;
-  root.appendChild(msgSection);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Buscamos todas las secciones de detalle creadas y activamos en cada una
-  // la lógica de la galería (imagen principal y miniaturas clicables).
-  const secciones = root.querySelectorAll('.detail');
-  secciones.forEach(configurarGaleriaProducto);
-});
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Configura la galería de un producto específico:
-// define qué imagen se muestra primero y cambia la imagen principal
-// cuando el usuario hace clic en una miniatura
-function configurarGaleriaProducto(seccion) {
-  if (!seccion) return;
-  const viewer = seccion.querySelector('.viewer');
-  if (!viewer) return;
-  const imagenes = viewer.querySelectorAll('.detail-main');
-  const thumbs = seccion.querySelectorAll('.thumbs a.thumb');
-  if (imagenes.length === 0 || thumbs.length === 0) return;
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Dejamos todas las imágenes y miniaturas sin estado activo,
-  // y luego marcamos la primera como la imagen inicial que se mostrará.
-  imagenes.forEach(img => img.classList.remove('is-active'));
-  thumbs.forEach(th => th.classList.remove('is-active'));
-  imagenes[0].classList.add('is-active');
-  thumbs[0].classList.add('is-active');
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Asignamos un evento de clic a cada miniatura:
-  // al hacer clic, se cambia la imagen principal a la correspondiente
-  // y se actualiza cuál miniatura está marcada como activa
-  thumbs.forEach((thumb, indice) => {
-    thumb.addEventListener('click', (e) => {
-      e.preventDefault();
-      imagenes.forEach(img => img.classList.remove('is-active'));
-      thumbs.forEach(th => th.classList.remove('is-active'));
-      if (imagenes[indice]) {
-        imagenes[indice].classList.add('is-active');
-      }
-      thumb.classList.add('is-active');
-    });
+    }).join(''); // .join('') une todas las imagenes pequeñas
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    root.insertAdjacentHTML('beforeend', `
+      <section id="${prod.id}" class="detail section--neutral">
+        <div class="container-detalle">
+          <div class="left">
+            <div class="viewer">
+              ${imagenesHTML}
+            </div>
+            <div class="thumbs">
+              ${thumbsHTML}
+            </div>
+          </div>
+          <div class="right">
+            <h1 class="tittle-navbar">${prod.titulo}</h1>
+            <p class="subtitle">${prod.subtitulo}</p>
+
+            <h3 class="mt-4">Materiales</h3>
+            <ul class="materiales">
+              ${materialesHTML}
+            </ul>
+
+            <h3 class="mt-4">Descripción</h3>
+            <p>${prod.descripcion}</p>
+
+            <div class="price mt-3">${prod.precio}</div>
+            <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
+          </div>
+        </div>
+      </section>
+    `);
   });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Detectar todos los botones "Añadir al carrito"
-    const botones = document.querySelectorAll('.boton-personalizado');
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  root.querySelectorAll('.detail').forEach(seccion => {
+    //root busca TODOS los elementos que tengan la clase .detail o sea el detalle
+    // .forEach Recorre cada uno de esos .detail uno por uno
+    const imgs = seccion.querySelectorAll('.detail-main');
+    // Busca dentro de ESTA sección los elementos que tengan la clase .detail-main
+    // "imgs" es como una lista de esas imágenes.
 
-    botones.forEach(boton => {
-      boton.addEventListener('click', () => {
+    const thumbs = seccion.querySelectorAll('.thumb');
+    // Igual que arriba pero ahora busca las chuquitas
+    // thumbs es la lista de todas las miniaturas
+    if (!imgs.length || !thumbs.length) return;
+    // El if con imgs.length es cuantas imagenes grandes encontro
+    // thumbs.length es cuántas miniaturas encontró
 
-        // Verificamos si el botón está dentro de un producto (tiene clase .right)
-        const producto = boton.closest('.right');
-        if (!producto) {
-          // Si no está dentro de un producto (como el botón "Volver"), no hace nada.
-          return;
-        }
+    imgs[0].classList.add('is-active');
+    // Toma la PRIMERA imagen grande o sea con la posición 0 de la lista
+    // y le agrega la clase CSS "is-active"
+    // Con esa clase, en el CSS decida que esa imagen se vea visible
 
-        // Obtener datos del producto
-        const nombre = producto.querySelector('h1').innerText;
-        const precio = parseFloat(producto.querySelector('.price').innerText.replace('$', ''));
-        const imagen = producto.parentElement.querySelector('.viewer img').src;
+    thumbs[0].classList.add('is-active');
+    // Hace lo mismo pero con la primera miniatura
+  });
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  root.addEventListener('click', (e) => {
+    // Se agrega un escuchador al elemento root
 
-        // Crear objeto del producto
-        const nuevoProducto = { nombre, precio, cantidad: 1, imagen };
+    const thumb = e.target.closest('.thumb');
+    // .closest('.thumb') busca el elemento más cercano (puede ser él mismo o su padre) que tenga la clase "thumb".
+    // Esto permite detectar si el clic fue sobre una miniatura, incluso si fue sobre una imagen dentro del contenedor.
 
-        // Leer carrito actual desde localStorage
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    if (thumb) {
+      // Si el clic fue en una miniatura entra a este bloque
+      e.preventDefault();
+      // evita que la página se recargue
+      const seccion = thumb.closest('.detail');
+      // Busca el contenedor con la clase detail o sea encuentra a qué producto pertenece esa miniatura
+      if (!seccion) return;
+      // Si no encontró una sección se sale para evitar errores
 
-        // Verificar si ya existe
-        const existente = carrito.find(p => p.nombre === nombre);
-        if (existente) {
-          existente.cantidad += 1;
-        } else {
-          carrito.push(nuevoProducto);
-        }
+      const thumbs = Array.from(seccion.querySelectorAll('.thumb'));
+      // Busca todas las miniaturas de ese producto y las convierte en un array real con Array.from()
+      const imgs = Array.from(seccion.querySelectorAll('.detail-main'));
+      // Igual que arriba pero busca las imágenes grandes
 
-        // Guardar carrito actualizado
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+      const index = thumbs.indexOf(thumb);
+      // Busca en qué posición está la miniatura que el usuario seleccionó dentro de la lista de miniaturas
 
-        // Avisar al usuario
-        alert(`${nombre} fue añadido al carrito.`);
-      });
-    });
-}
+      if (index === -1) return;
+      // Si no encuentra el índice, se sale para no ejecutar pasos inválidos.
+
+      imgs.forEach(img => img.classList.remove('is-active'));
+      // Quita "is-active" de todas las imágenes grandes
+
+      thumbs.forEach(t => t.classList.remove('is-active'));
+      // Quita "is-active" de todas las miniaturas
+
+      if (imgs[index]) imgs[index].classList.add('is-active');
+      // Activa la imagen grande correspondiente
+
+      thumb.classList.add('is-active');
+      // Marca la miniatura clicada como activa
+
+      return; // Termina aquí si fue un clic en miniatura
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Lógica para el botón "Añadir al carrito"
+
+    const botonCarrito = e.target.closest('.boton-personalizado');
+    // e.target es el elemento donde el usuario hizo clic
+    // .closest('.boton-personalizado') detecta si el clic fue en el botón "Añadir al carrito"
+
+    if (botonCarrito) {
+      // Si el clic efectivamente fue sobre un botón boton-personalizado, sigue
+
+      const producto = botonCarrito.closest('.right');
+      // Busca el contenedor del lado derecho que tiene la información del producto: nombre, precio, botón etc.
+
+      if (!producto) return;
+      // Si por alguna razón el botón no está dentro de un bloque .right se sale
+
+      const nombre = producto.querySelector('h1').innerText;
+      // Toma el título del producto
+
+      const precio = parseFloat(
+        producto.querySelector('.price').innerText.replace('$', '')
+      );
+      // Toma el texto del precio, le quita el símbolo $, y lo convierte a número
+
+      const imagen = producto.parentElement.querySelector('.viewer img').src;
+      // Toma la primera imagen del área .viewer (imagen principal)
+
+      const nuevoProducto = { nombre, precio, cantidad: 1, imagen };
+      // Objeto con la info del producto
+
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      // Lee el carrito del localStorage, o crea uno vacío si no existe
+
+      const existente = carrito.find(p => p.nombre === nombre);
+      // Busca si el producto ya está en el carrito
+
+      if (existente) {
+        existente.cantidad += 1;
+        // Si ya existe, solo aumenta la cantidad
+      } else {
+        carrito.push(nuevoProducto);
+        // Si no existe, lo agrega nuevo
+      }
+
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      // Guarda el carrito actualizado en localStorage
+
+      alert(`${nombre} fue añadido al carrito.`);
+      // Mensaje de confirmación
+    }
+  });
+});
