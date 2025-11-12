@@ -165,7 +165,7 @@ body {
     justify-content: center;
   }
 
-  .hero-text {
+  .hero-text1 {
     position: relative;
     z-index: 2;
     animation: fadeIn 1.5s ease;
@@ -203,6 +203,9 @@ body {
     color: #F4E9E2;
     margin-bottom: 2rem;
     letter-spacing: 1px;
+  }
+  .text4 {
+    color: #fff;
   }
 
   /* Botón dorado personalizado */
