@@ -49,7 +49,7 @@ app.innerHTML = `
 
   <!-- ================= HERO ================= -->
   <!-- Sección principal con imagen de fondo y texto destacado -->
-  <section id="inicio" class="hero">
+  <section id="inicio" class="hero1">
     <div class="hero-text">
       <h1>Colección Destacada</h1>
       <p>Anillos, Collares y Pulseras Exclusivas</p>
@@ -101,7 +101,7 @@ app.innerHTML = `
 `;
 
 // ==========================
-// SECCIÓN DE COLECCIONES
+// SECCIÓN DE COLECCIONESs
 // ==========================
 
 // Se definen los objetos que representan las categorías principales

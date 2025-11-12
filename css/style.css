@@ -29,7 +29,7 @@ body {
   transform: scale(1.02);
 }
 
-.nombre-logo {
+
   /* ================== TÍTULOS ==================
      Usa Playfair Display en h1, h2 y h3 para dar un estilo clásico. */
 
@@ -154,7 +154,7 @@ body {
 
   /* =================== HERO =================== */
 
-  .hero {
+  .hero1 {
     background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
     url('../img/portada.jpg') center/cover fixed no-repeat;
     height: 90vh;
@@ -330,53 +330,6 @@ body {
   }
 
 
-  /* =================== ESTADÍSTICAS =================== */
-
-  .stats-section {
-    background-color: #EEC5AF;
-    padding: 60px 0;
-  }
-
-  .stat-card {
-    padding: 30px;
-    text-align: center;
-    transition: all 0.4s ease;
-    cursor: pointer;
-  }
-
-  .stat-card:hover {
-    transform: translateY(-10px);
-  }
-
-  .stat-card i {
-    font-size: 3.5rem;
-    color: #C9A14A;
-    margin-bottom: 15px;
-    transition: all 0.4s ease;
-  }
-
-  .stat-card:hover i {
-    transform: rotateY(360deg);
-    color: #5A4B40;
-  }
-
-  .counter {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #5A4B40;
-    transition: all 0.3s ease;
-  }
-
-  .stat-card:hover .counter {
-    color: #C9A14A;
-    transform: scale(1.1);
-  }
-
-  .stat-card h5 {
-    color: #5A4B40;
-    font-weight: 600;
-    margin-top: 10px;
-  }
 
   /* =================== PRODUCTOS DESTACADOS =================== */
 
@@ -670,7 +623,7 @@ body {
     margin-right: 16px; /* mantiene un poco de aire con el login */
   }
 
-  /* HERO */
+  /* HERO --*/
 
   .hero {
     height: 60vh;
@@ -740,4 +693,4 @@ body {
     margin: 0 auto;
   }
 
-}
+
