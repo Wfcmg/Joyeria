@@ -100,7 +100,7 @@ function mostrarCarrito() {
   row.appendChild(colIzq);
   row.appendChild(colDer);
 
-  // Inserta todo el contenido en el contenedor principal del HTML
+  // Inserta
   contenedor.appendChild(row);
 }
 
