@@ -8,6 +8,12 @@ body {
   scroll-behavior: smooth;
 }
 
+:root {
+  --bg-main: #F4E9E2;   /* Fondo principal suave */
+  --shadow: #5A4B40;    /* Marrón sombra para textos secundarios */
+  --gold: #C9A14A;      /* Dorado elegante para precios o acentos */
+}
+
 /* =================== NAVBAR PERSONALIZADO =================== */
 .custom-navbar {
   background-color: #ffffff !important;
@@ -692,5 +698,102 @@ body {
     display: block;
     margin: 0 auto;
   }
+
+
+
+/* ================== LAYOUT DEL DETALLE DE PRODUCTO ==================
+   Diseño de dos columnas (imágenes y texto), sombras y espaciado equilibrado. */
+.container-detalle{
+  max-width:1100px; margin:0 auto; padding:32px 16px;
+  display:grid; gap:28px; grid-template-columns:1fr 1fr;
+}
+.detail-main{ width:100%; border-radius:16px; box-shadow:0 8px 24px rgba(90,75,64,.12); }
+.thumbs{ display:flex; gap:10px; margin-top:10px; }
+.thumbs img{ width:80px; height:80px; object-fit:cover; border-radius:10px; border:2px solid var(--bg-main); }
+
+.subtitle{ color:var(--shadow); opacity:.8; margin:.25rem 0 1rem; }
+.price{ font-size:1.6rem; font-weight:700; color:var(--gold); margin-bottom:1rem; }
+
+/* ================== CONTROL DE VISIBILIDAD DE PRODUCTOS ==================
+   Oculta todos los productos y muestra solo el que está seleccionado
+   según el target (#id) o si una imagen está activa. */
+.detail { display: none; }
+.detail:target { display: block; }
+.detail:has(.detail-main:target) { display: block; }
+.detail:target ~ .no-target-msg,
+.detail:has(.detail-main:target) ~ .no-target-msg {
+  display: none;
+}
+
+/* ================== RESPONSIVE ==================
+   Cambia a una sola columna en pantallas pequeñas. */
+@media (max-width: 768px){
+  .container-detalle{ grid-template-columns:1fr; }
+}
+
+/* ================== LISTA DE MATERIALES ==================
+   Lista sin viñetas, fuente secundaria y colores suaves. */
+.materiales {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: #5a4634;
+}
+.materiales li {
+  margin-bottom: 5px;
+}
+.materiales strong {
+  color: #3c2a1e;
+}
+
+/* ================== VIEWER DE IMÁGENES ==================
+   Muestra solo una imagen principal a la vez (controlada por JS). */
+.left .viewer {
+  position: relative;
+}
+.left .viewer .detail-main {
+  display: none;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+.left .viewer .detail-main.is-active {
+  display: block;
+}
+
+/* ================== MINIATURAS ==================
+   Fila de imágenes pequeñas con borde y efecto hover dorado. */
+.thumbs {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.thumbs a.thumb {
+  display: inline-block;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 4px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  transition: transform .15s ease, border-color .15s ease;
+}
+.thumbs a.thumb:hover {
+  transform: translateY(-2px);
+  border-color: #d6b28f;
+}
+.thumbs a.thumb.is-active {
+  border-color: #d6b28f;
+}
+
+/* ================== SUAVIZADO DE DESPLAZAMIENTO ==================
+   Elimina saltos al usar anclas (#) en los productos o imágenes. */
+html {
+  scroll-behavior: auto;
+}
+:target {
+  scroll-margin-top: 0;
+}
 
 

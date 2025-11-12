@@ -1,11 +1,10 @@
-// Cuando la página esté lista
+// Cuando la página esté lista, armamos todo el detalle dinámico
 document.addEventListener('DOMContentLoaded', () => {
-  // Siginifica que esta bsucando el detalle root y el if es si aun no anda la pagina
   const root = document.getElementById('detalle-root');
-  if (!root) return;
+  if (!root) return; // Si no existe el contenedor, no hacemos nada
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Aqui vamos a ahacer un array y generar productos la variable
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Lista de productos que se mostrarán en la página de detalle
   const productos = [
     {
       id: 'p1',
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
       subtitulo: 'Un diseño sobrio y moderno con un diamante de corte brillante en montura solitaria.',
       precio: '$120',
       imagenes: ['producto1.jpg', 'producto1.2.jpg', 'producto1.3.jpg'],
-      // arreglo (array), es decir, una lista de varios textos //
       materiales: [
         '<strong>Metal:</strong> Aleación de platino 950 o acero quirúrgico pulido espejo, resistente al desgaste y la oxidación.',
         '<strong>Piedra principal:</strong> Zirconia cúbica premium de 1 quilate (simula un diamante con gran brillo y pureza).',
@@ -116,192 +114,192 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // .forEach() sirve para recorrer cada elemento de un array, prod hace que recibe uno de los productos y guardarlo temporalmente en la variable prod
-  productos.forEach((prod) => {
-    // <li></li> significa list item, .map() sirve para recorrer cada elemento del array y transformarlo como ejemplo <li> y join une el resultado
-    const materialesHTML = prod.materiales.map(m => `<li>${m}</li>`).join('');
-    // prod.imagenes es un array (lista) .map tranforma en una etiqueta <img>, index es la posición de la imagen en el arreglo
-    // // 'index' indica la posición de la imagen dentro del array
-    const imagenesHTML = prod.imagenes.map((nombreArchivo, index) => {
-      // const es un dato fijo que usaré más adelante, imgId es simplemente el nombre,
-      // ${index + 1} toma el número de posición de la imagen dentro del array, sumándole 1
-      const imgId = `img${prod.numero}-${index + 1}`;
-      // asigna el identificador o dea el id de la imagen
-      //src es donde se carga la imagen
-      //pone o extrae la clase CSS para aplicar estilos
-      // texto alternativo que describe la imagen
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Esta función recibe una lista (array) llamada "materiales".
+  // Cada material del producto viene como un texto (por ejemplo: "Metal: Plata").
+  // Con .map() recorre cada elemento del array y lo convierte en una etiqueta <li>...</li>
+  // Al final, .join('') une todos los <li> en un solo bloque de texto HTML sin comas
+  // El resultado será algo como:
+  // <li>Metal: Plata</li><li>Piedra: Diamante</li><li>Acabado: Pulido</li>
+  const crearMaterialesHTML = (materiales) =>
+    materiales.map(m => `<li>${m}</li>`).join('');
+
+  // Esta función crea las imágenes grandes del visor (las que se ven principales).
+  // Recibe un "prod" (producto) que tiene dentro una lista llamada "imagenes".
+  // Usa .map() para recorrer todas las imágenes del producto una por una.
+  // A cada imagen le pone un id único usando el número del producto y su posición (i + 1).
+  // Por ejemplo: "img1-1", "img1-2", "img1-3".
+  // Luego devuelve una cadena HTML que contiene todas las imágenes grandes
+  // con la clase "detail-main" y la ruta "img/nombreArchivo".
+  // Finalmente, .join('') une todas las imágenes en un solo bloque de texto HTML
+  const crearImagenesHTML = (prod) =>
+    prod.imagenes.map((archivo, i) => {
+      const imgId = `img${prod.numero}-${i + 1}`;
       return `
         <img id="${imgId}"
-             src="img/${nombreArchivo}"
+             src="img/${archivo}"
              class="detail-main"
-             alt="Producto ${prod.numero} vista ${index + 1}">
+             alt="Producto ${prod.numero} vista ${i + 1}">
       `;
-      // Une todas las etiquetas
     }).join('');
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // .map() transforma cada uno en una etiqueta <a>
-    // es deicr que se están creando las miniaturas (thumbnails) que aparecen debajo de la imagen principal, las chiquitas
-    const thumbsHTML = prod.imagenes.map((nombreArchivo, index) => {
-      // const crea una variable que se usará para enlazar la miniatura con la imagen grande
-      // ${prod.numero} es el número del producto
-      // ${index + 1} es la posición de la imagen
-      const imgId = `img${prod.numero}-${index + 1}`;
-      //<a> la declaramos como "thumb" que apunta al id de la imagen
-      // Dentro de ese enlace se incluye una etiqueta <img> que carga la misma imagen pero la pequeña
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Esta función genera las "miniaturas" (thumbs) de cada producto
+  //
+  // Recibe un objeto "prod" (producto) que contiene un arreglo llamado "imagenes"
+  // Con .map() recorre cada imagen del producto una por una
+  // Dentro del recorrido, se crea un id único para cada imagen
+  // usando el número del producto y el índice de la imagen (i + 1)
+  //
+  // Luego, devuelve un bloque HTML con un enlace <a> que tiene:
+  //   - la clase "thumb" (para aplicar estilos CSS)
+  //   - un atributo href="#idDeLaImagen", que apunta a la imagen grande correspondiente
+  // Dentro de ese enlace se coloca una etiqueta <img> con la miniatura del producto
+  const crearThumbsHTML = (prod) =>
+    prod.imagenes.map((archivo, i) => {
+      const imgId = `img${prod.numero}-${i + 1}`;
       return `
-    <a class="thumb" href="#${imgId}">
-      <img src="img/${nombreArchivo}" alt="">
-    </a>
-  `;
-    }).join(''); // .join('') une todas las imagenes pequeñas
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    root.insertAdjacentHTML('beforeend', `
-      <section id="${prod.id}" class="detail section--neutral">
-        <div class="container-detalle">
-          <div class="left">
-            <div class="viewer">
-              ${imagenesHTML}
+        <a class="thumb" href="#${imgId}">
+          <img src="img/${archivo}" alt="">
+        </a>
+      `;
+    }).join('');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // .forEach() sirve para ejecutar una acción con cada elemento del arreglo
+  // En este caso, "prod" representa un producto
+  productos.forEach((prod) => {
+    // llaman a las funciones anteriores
+      const materialesHTML = crearMaterialesHTML(prod.materiales);
+      const imagenesHTML   = crearImagenesHTML(prod);
+      const thumbsHTML     = crearThumbsHTML(prod);
+
+      // insertAdjacentHTML('beforeend', ...) agrega este contenido HTML
+      // justo al final del elemento "root", sin borrar lo anterior
+      // Es como ir pegando cada producto uno tras otro
+      root.insertAdjacentHTML('beforeend', `
+        <section id="${prod.id}" class="detail section--neutral">
+          <div class="container-detalle">
+            <div class="left">
+              <div class="viewer">
+                ${imagenesHTML}
+              </div>
+              <div class="thumbs">
+                ${thumbsHTML}
+              </div>
             </div>
-            <div class="thumbs">
-              ${thumbsHTML}
+            <div class="right">
+              <h1 class="tittle-navbar">${prod.titulo}</h1>
+              <p class="subtitle">${prod.subtitulo}</p>
+
+              <h3 class="mt-4">Materiales</h3>
+              <ul class="materiales">
+                ${materialesHTML}
+              </ul>
+
+              <h3 class="mt-4">Descripción</h3>
+              <p>${prod.descripcion}</p>
+
+              <div class="price mt-3">${prod.precio}</div>
+              <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
             </div>
           </div>
-          <div class="right">
-            <h1 class="tittle-navbar">${prod.titulo}</h1>
-            <p class="subtitle">${prod.subtitulo}</p>
+        </section>
+      `);
+    });
 
-            <h3 class="mt-4">Materiales</h3>
-            <ul class="materiales">
-              ${materialesHTML}
-            </ul>
-
-            <h3 class="mt-4">Descripción</h3>
-            <p>${prod.descripcion}</p>
-
-            <div class="price mt-3">${prod.precio}</div>
-            <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
-          </div>
-        </div>
-      </section>
-    `);
-  });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //Cada "detail" representa una sección de producto (anillo, colgante, etc.)
+  //Usa .forEach() para recorrer cada una de esas secciones por separado.
   root.querySelectorAll('.detail').forEach(seccion => {
-    //root busca TODOS los elementos que tengan la clase .detail o sea el detalle
-    // .forEach Recorre cada uno de esos .detail uno por uno
-    const imgs = seccion.querySelectorAll('.detail-main');
-    // Busca dentro de ESTA sección los elementos que tengan la clase .detail-main
-    // "imgs" es como una lista de esas imágenes.
-
+    const imgs   = seccion.querySelectorAll('.detail-main');
     const thumbs = seccion.querySelectorAll('.thumb');
-    // Igual que arriba pero ahora busca las chuquitas
-    // thumbs es la lista de todas las miniaturas
     if (!imgs.length || !thumbs.length) return;
-    // El if con imgs.length es cuantas imagenes grandes encontro
-    // thumbs.length es cuántas miniaturas encontró
-
+    // Agrega la clase 'is-active' a la primera imagen y a la primera miniatura
+    // Esto hace que al cargar la página, la primera imagen se muestre visible
+    // y la miniatura aparezca resaltada
     imgs[0].classList.add('is-active');
-    // Toma la PRIMERA imagen grande o sea con la posición 0 de la lista
-    // y le agrega la clase CSS "is-active"
-    // Con esa clase, en el CSS decida que esa imagen se vea visible
-
     thumbs[0].classList.add('is-active');
-    // Hace lo mismo pero con la primera miniatura
   });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Esta función se activa cada vez que se hace clic en cualquier parte
+  // del área de productos
   root.addEventListener('click', (e) => {
-    // Se agrega un escuchador al elemento root
-
+    // e.target representa el elemento exacto donde se hizo clic
+    // .closest('.thumb') busca si ese clic ocurrió dentro de una miniatura
     const thumb = e.target.closest('.thumb');
-    // .closest('.thumb') busca el elemento más cercano (puede ser él mismo o su padre) que tenga la clase "thumb".
-    // Esto permite detectar si el clic fue sobre una miniatura, incluso si fue sobre una imagen dentro del contenedor.
-
+    // Si el clic fue en una miniatura:
     if (thumb) {
-      // Si el clic fue en una miniatura entra a este bloque
-      e.preventDefault();
-      // evita que la página se recargue
+      e.preventDefault(); // Evita que el enlace haga scroll automático
+
+      // Busca la sección del producto donde está esa miniatura
       const seccion = thumb.closest('.detail');
-      // Busca el contenedor con la clase detail o sea encuentra a qué producto pertenece esa miniatura
-      if (!seccion) return;
-      // Si no encontró una sección se sale para evitar errores
+      if (!seccion) return; // Si no la encuentra, sale del bloque
 
+      // Crea dos listas: una con todas las miniaturas y otra con las imágenes grandes
+      // Array.from() convierte esos elementos en arreglos para poder manipularlos
       const thumbs = Array.from(seccion.querySelectorAll('.thumb'));
-      // Busca todas las miniaturas de ese producto y las convierte en un array real con Array.from()
-      const imgs = Array.from(seccion.querySelectorAll('.detail-main'));
-      // Igual que arriba pero busca las imágenes grandes
+      const imgs   = Array.from(seccion.querySelectorAll('.detail-main'));
 
+      // Busca el número de posición (índice) de la miniatura clickeada.
       const index = thumbs.indexOf(thumb);
-      // Busca en qué posición está la miniatura que el usuario seleccionó dentro de la lista de miniaturas
+      if (index === -1) return; // Si no la encuentra, no hace nada.
 
-      if (index === -1) return;
-      // Si no encuentra el índice, se sale para no ejecutar pasos inválidos.
-
+      // Quita la clase 'is-active' a todas las imágenes y miniaturas
+      // esto hace que se oculten o pierdan el resaltado actual
       imgs.forEach(img => img.classList.remove('is-active'));
-      // Quita "is-active" de todas las imágenes grandes
-
       thumbs.forEach(t => t.classList.remove('is-active'));
-      // Quita "is-active" de todas las miniaturas
 
+      // Agrega la clase 'is-active' solo a la imagen y miniatura seleccionadas
+      // Esto cambia la imagen principal mostrada en pantalla
       if (imgs[index]) imgs[index].classList.add('is-active');
-      // Activa la imagen grande correspondiente
-
       thumb.classList.add('is-active');
-      // Marca la miniatura clicada como activa
 
-      return; // Termina aquí si fue un clic en miniatura
+      return; // Termina aquí para no ejecutar la parte del carrito.
     }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////    //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Lógica para el botón "Añadir al carrito"
-
+    // Busca si el clic fue en un botón con la clase .boton-personalizado
     const botonCarrito = e.target.closest('.boton-personalizado');
-    // e.target es el elemento donde el usuario hizo clic
-    // .closest('.boton-personalizado') detecta si el clic fue en el botón "Añadir al carrito"
+    if (!botonCarrito) return; // Si no fue ese botón, no hace nada
 
-    if (botonCarrito) {
-      // Si el clic efectivamente fue sobre un botón boton-personalizado, sigue
+    // Encuentra el bloque de información del producto (columna derecha)
+    const bloqueProducto = botonCarrito.closest('.right');
+    if (!bloqueProducto) return;
 
-      const producto = botonCarrito.closest('.right');
-      // Busca el contenedor del lado derecho que tiene la información del producto: nombre, precio, botón etc.
+    // Toma el nombre del producto desde la etiqueta <h1>.
+    const nombre = bloqueProducto.querySelector('h1').innerText;
 
-      if (!producto) return;
-      // Si por alguna razón el botón no está dentro de un bloque .right se sale
+    // Toma el precio desde la etiqueta con clase .price y le quita el símbolo $.
+    const precio = parseFloat(
+      bloqueProducto.querySelector('.price').innerText.replace('$', '')
+    );
 
-      const nombre = producto.querySelector('h1').innerText;
-      // Toma el título del producto
+    // Obtiene la imagen principal del visor (la que está activa).
+    const imagen = bloqueProducto.parentElement.querySelector('.viewer img').src;
 
-      const precio = parseFloat(
-        producto.querySelector('.price').innerText.replace('$', '')
-      );
-      // Toma el texto del precio, le quita el símbolo $, y lo convierte a número
+    // Crea un nuevo objeto con los datos del producto.
+    const nuevoProducto = { nombre, precio, cantidad: 1, imagen };
 
-      const imagen = producto.parentElement.querySelector('.viewer img').src;
-      // Toma la primera imagen del área .viewer (imagen principal)
+    // Revisa si ya existe un carrito guardado en localStorage.
+    // Si no existe, crea un arreglo vacío [].
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-      const nuevoProducto = { nombre, precio, cantidad: 1, imagen };
-      // Objeto con la info del producto
+    // Busca si el producto ya está en el carrito (comparando por nombre).
+    const existente = carrito.find(p => p.nombre === nombre);
 
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      // Lee el carrito del localStorage, o crea uno vacío si no existe
-
-      const existente = carrito.find(p => p.nombre === nombre);
-      // Busca si el producto ya está en el carrito
-
-      if (existente) {
-        existente.cantidad += 1;
-        // Si ya existe, solo aumenta la cantidad
-      } else {
-        carrito.push(nuevoProducto);
-        // Si no existe, lo agrega nuevo
-      }
-
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      // Guarda el carrito actualizado en localStorage
-
-      alert(`${nombre} fue añadido al carrito.`);
-      // Mensaje de confirmación
+    // Si ya estaba, aumenta la cantidad.
+    // Si no, lo agrega como nuevo producto al carrito.
+    if (existente) {
+      existente.cantidad += 1;
+    } else {
+      carrito.push(nuevoProducto);
     }
+
+    // Guarda el carrito actualizado en localStorage,
+    // convirtiendo el arreglo en texto con JSON.stringify().
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    // Muestra una alerta informando que se agregó el producto.
+    alert(`${nombre} fue añadido al carrito.`);
   });
 });
