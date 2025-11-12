@@ -696,4 +696,165 @@ body {
     margin: 0 auto;
   }
 
+/* =================== VISTA TIPO CARTIER =================== */
+
+#toolbar-productos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(201, 161, 74, 0.2);
+  border-bottom: 1px solid rgba(201, 161, 74, 0.2);
+  margin-bottom: 20px;
+}
+
+#ordenar-select {
+  border: 1px solid rgba(201, 161, 74, 0.5);
+  color: #5A4B40;
+  background: #fff;
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.layout-productos {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+}
+
+#sidebar-filtros {
+  position: sticky;
+  top: 90px;
+  background: #fff;
+  border: 1px solid rgba(201, 161, 74, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  height: fit-content;
+}
+
+.filtro-grupo h6 {
+  font-family: 'Playfair Display', serif;
+  color: #5A4B40;
+  margin-bottom: 10px;
+}
+
+.filtro-grupo .item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  cursor: pointer;
+}
+
+.filtro-grupo input {
+  accent-color: #C9A14A;
+  cursor: pointer;
+}
+
+#btn-limpiar-filtros {
+  background: transparent;
+  border: 1px solid rgba(201, 161, 74, 0.5);
+  padding: 6px 10px;
+  border-radius: 10px;
+  color: #5A4B40;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#btn-limpiar-filtros:hover {
+  background: rgba(201, 161, 74, 0.08);
+}
+
+.producto-card {
+  border: 1px solid rgba(201, 161, 74, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.producto-card:hover {
+  box-shadow: 0 8px 20px rgba(90, 75, 64, 0.15);
+  transform: translateY(-5px);
+}
+
+.producto-imagen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.producto-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-name {
+  font-family: 'Playfair Display', serif;
+  color: #5A4B40;
+  font-size: 1.05rem;
+  min-height: 2.6em;
+  margin-bottom: 8px;
+}
+
+.product-meta {
+  color: #5A4B40;
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+.product-price {
+  color: #5A4B40;
+  font-weight: 700;
+  margin-top: 4px;
+  font-size: 1.1rem;
+}
+
+#msg-vacio {
+  color: #5A4B40;
+  opacity: 0.8;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+#resultado-conteo {
+  color: #5A4B40;
+  font-weight: 500;
+}
+
+.boton-personalizado {
+  background-color: #C9A14A;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.boton-personalizado:hover {
+  background-color: #b08b3f;
+  color: white;
+  transform: scale(1.05);
+}
+
+@media (max-width: 992px) {
+  .layout-productos {
+    grid-template-columns: 1fr;
+  }
+
+  #sidebar-filtros {
+    position: static;
+  }
+}
 
