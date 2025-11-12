@@ -4,13 +4,8 @@
 
 // Se obtiene el contenedor general del HTML donde se construirá toda la página
 const app = document.getElementById("app");
-
-
 app.innerHTML = `
-<!-- ========================================================= -->
-<!-- ====================== NAVBAR ============================ -->
-<!-- ========================================================= -->
-<!-- Es la barra superior fija que contiene el logo y las secciones principales -->
+<!-----------NAVBAR -------- -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar shadow-sm py-1 sticky-top">
   <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
     <!-- Logo y nombre del sitio, que redirigen al inicio -->
@@ -21,7 +16,7 @@ app.innerHTML = `
       <span class="nombre-logo">Brillo Eterno</span>
     </a>
 
-    <!-- Botón hamburguesa para pantallas pequeñas (activa o colapsa el menú) -->
+    <!-- Botón hamburguesa  -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,14 +31,14 @@ app.innerHTML = `
         <!-- Enlace a la página de contacto -->
         <li class="nav-item mx-2"><a class="nav-link enlace" href="contacto.html">Contacto</a></li>
 
-        <!-- Ícono del carrito (con imagen personalizada) -->
+        <!-- Ícono del carrito  -->
         <li class="nav-item d-flex align-items-center mx-1 icono-carrito">
           <a class="nav-link p-0 icono" href="carrito.html" title="Carrito">
             <img src="img/icono_carrito.png" alt="Carrito" width="38" height="38" style="object-fit: contain;">
           </a>
         </li>
 
-        <!-- Ícono del usuario (login o perfil) -->
+        <!-- Ícono del usuario -->
         <li class="nav-item d-flex align-items-center ms-2 icono-login-item">
           <a class="icono-login d-flex align-items-center justify-content-center" href="login.html" title="Login">
             <img src="img/icono_usuario.png" alt="Usuario" width="22" height="22" style="object-fit: contain;">
@@ -54,17 +49,15 @@ app.innerHTML = `
   </div>
 </nav>
   <!-- ================= HERO ================= -->
-  <!-- Sección principal con imagen de fondo y texto destacado -->
   <section id="inicio" class="hero1">
-    <div class="hero-text">
-      <h1>Colección Destacada</h1>
-      <p>Anillos, Collares y Pulseras Exclusivas</p>
+    <div class="hero-text1">
+      <h1 class="text4">Colección Destacada</h1>
+      <p class="text4">Anillos, Collares y Pulseras Exclusivas</p>
       <button class="btn boton-dorado">Explorar Productos</button>
     </div>
   </section>
 
   <!-- ================= COLECCIONES ================= -->
-  <!-- Sección con las tres categorías principales de productos -->
   <section id="colecciones" class="colecciones text-center animate-on-scroll">
     <div class="container">
       <h2>Nuestras Colecciones</h2>
@@ -73,7 +66,7 @@ app.innerHTML = `
   </section>
 
   <!-- ================= PRODUCTOS ================= -->
-  <!-- Sección donde se mostrarán las tarjetas dinámicas de productos -->
+
   <section id="productos" class="productos-section text-center">
     <div class="container">
       <h2>Productos Destacados</h2>
@@ -87,7 +80,7 @@ app.innerHTML = `
   </section>
 
   <!-- ================= FOOTER ================= -->
-  <!-- Pie de página con información de contacto y redes sociales -->
+
   <footer id="contacto" class="footer text-center">
     <div class="container">
       <h5>Brillo Eterno</h5>
