@@ -1,6 +1,6 @@
 // Esperar a que el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
-  // ========== 1️⃣ DATOS EXTENDIDOS ==========
+  // ========== DATOS EXTENDIDOS ==========
   const productos = [
     {
       id: "p1",
@@ -59,14 +59,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ];
 
-  // ========== 2️⃣ ESTADO GLOBAL ==========
+  // ==========  ESTADO GLOBAL ==========
   let estado = {
     orden: 'recomendado',
     filtros: { categorias: new Set(), materiales: new Set() },
     base: productos.slice()
   };
 
-  // ========== 3️⃣ FUNCIONES PURAS ==========
+  // ========== FUNCIONES PURAS ==========
 
   function buildFacets(productos) {
     const categorias = new Set();
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .reduce((acc, p) => acc + p.precio * p.stock, 0);
   }
 
-  // ========== 4️⃣ RENDER LAYOUT COMPLETO ==========
+  // ========== RENDER LAYOUT COMPLETO ==========
 
   function renderLayout() {
     const app = document.getElementById("app");
@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  // ========== 5️⃣ RENDER FILTROS DINÁMICOS ==========
+  // ========== RENDER FILTROS DINÁMICOS ==========
 
   function renderFilters(facets) {
     const cat = [...facets.categorias].sort();
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mat.map(v => `<label class="item"><input type="checkbox" value="${v}" name="mat[]"> ${v}</label>`).join('');
   }
 
-  // ========== 6️⃣ RENDER GRILLA DE PRODUCTOS ==========
+  // ========== RENDER GRILLA DE PRODUCTOS ==========
 
   function renderCard(p) {
     return `
@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ========== 7️⃣ ACTUALIZAR VISTA COMPLETA ==========
+  // ========== ACTUALIZAR VISTA COMPLETA ==========
 
   function updateView() {
     const listaFiltrada = applyFilters(estado.base, estado.filtros);
@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Total inventario (activos): $" + total.toFixed(2));
   }
 
-  // ========== 8️⃣ BIND EVENTOS ==========
+  // ========== BIND EVENTOS ==========
 
   function bindEvents() {
     // Ordenar
@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ========== 9️⃣ INICIALIZACIÓN ==========
+  // ========== INICIALIZACIÓN ==========
 
   renderLayout();
   renderFilters(buildFacets(estado.base));
