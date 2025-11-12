@@ -101,7 +101,7 @@ app.innerHTML = `
 `;
 
 // ==========================
-// SECCIÓN DE COLECCIONES
+// SECCIÓN DE COLECCIONESs
 // ==========================
 
 // Se definen los objetos que representan las categorías principales
