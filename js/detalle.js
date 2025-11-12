@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       numero: 1,
       titulo: 'Anillo "Eternidad Solitaria"',
       subtitulo: 'Un diseño sobrio y moderno con un diamante de corte brillante en montura solitaria.',
-      precio: '$120',
+      precio: '$1.299,99',
       imagenes: ['producto1.jpg', 'producto1.2.jpg', 'producto1.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Aleación de platino 950 o acero quirúrgico pulido espejo, resistente al desgaste y la oxidación.',
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       numero: 2,
       titulo: 'Colgante "Aura de Esmeralda"',
       subtitulo: 'Lujo atemporal. Una esmeralda central rodeada de destellos de luz pura.',
-      precio: '$150',
+      precio: '999,99',
       imagenes: ['producto2.jpg', 'producto2.2.jpg', 'producto2.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Plata esterlina 925 de alta pureza, con acabado de brillo espejo y tratamiento antidesgaste.',
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       numero: 3,
       titulo: 'Brazalete "Luz Constelación"',
       subtitulo: 'Elegancia versátil. Una línea de destellos que envuelve la muñeca con luz y sofisticación.',
-      precio: '$180',
+      precio: '$849,99',
       imagenes: ['producto3.jpg', 'producto3.2.jpg', 'producto3.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Plata esterlina 925 bañada en rodio, que garantiza brillo intenso y resistencia al desgaste.',
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       numero: 4,
       titulo: 'Pendientes "Perla Serena"',
       subtitulo: 'Gracia natural. Perlas cultivadas con brillo sedoso y elegancia eterna.',
-      precio: '$210',
+      precio: '$459,99',
       imagenes: ['producto4.jpg', 'producto4.2.jpg', 'producto4.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Plata esterlina 925 o platino, ambos hipoalergénicos y resistentes a la oxidación.',
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       numero: 5,
       titulo: 'Reloj "Tempo Rosado"',
       subtitulo: 'Fusión de estilo. Elegancia en oro rosa y la serenidad del nácar iridiscente.',
-      precio: '$240',
+      precio: '$699,99',
       imagenes: ['producto5.jpg', 'producto5.2.jpg', 'producto5.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Acero inoxidable con baño de oro rosa, resistente a la corrosión y con acabado pulido espejo.',
@@ -115,23 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Esta función recibe una lista (array) llamada "materiales".
-  // Cada material del producto viene como un texto (por ejemplo: "Metal: Plata").
+  // Esta función recibe una lista (array) llamada "materiales"
   // Con .map() recorre cada elemento del array y lo convierte en una etiqueta <li>...</li>
   // Al final, .join('') une todos los <li> en un solo bloque de texto HTML sin comas
-  // El resultado será algo como:
-  // <li>Metal: Plata</li><li>Piedra: Diamante</li><li>Acabado: Pulido</li>
   const crearMaterialesHTML = (materiales) =>
     materiales.map(m => `<li>${m}</li>`).join('');
 
-  // Esta función crea las imágenes grandes del visor (las que se ven principales).
-  // Recibe un "prod" (producto) que tiene dentro una lista llamada "imagenes".
-  // Usa .map() para recorrer todas las imágenes del producto una por una.
+  // Esta función crea las imágenes grandes del visor (las que se ven principales)
+  // Recibe un "prod" (producto) que tiene dentro una lista llamada "imagenes"
   // A cada imagen le pone un id único usando el número del producto y su posición (i + 1).
   // Por ejemplo: "img1-1", "img1-2", "img1-3".
   // Luego devuelve una cadena HTML que contiene todas las imágenes grandes
-  // con la clase "detail-main" y la ruta "img/nombreArchivo".
-  // Finalmente, .join('') une todas las imágenes en un solo bloque de texto HTML
   const crearImagenesHTML = (prod) =>
     prod.imagenes.map((archivo, i) => {
       const imgId = `img${prod.numero}-${i + 1}`;
