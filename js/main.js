@@ -7,46 +7,52 @@ const app = document.getElementById("app");
 
 
 app.innerHTML = `
-  <!-- ================= NAVBAR ================= -->
-  <!-- Barra de navegación principal con enlaces y logotipo -->
-  <nav class="navbar navbar-expand-lg navbar-light custom-navbar shadow-sm py-1 sticky-top">
-    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+<!-- ========================================================= -->
+<!-- ====================== NAVBAR ============================ -->
+<!-- ========================================================= -->
+<!-- Es la barra superior fija que contiene el logo y las secciones principales -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar shadow-sm py-1 sticky-top">
+  <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+    <!-- Logo y nombre del sitio, que redirigen al inicio -->
+    <a class="navbar-brand d-flex align-items-center fw-bold tittle-navbar" href="index.html" style="margin-left: 10px;">
+      <!-- Imagen del logo -->
+      <img src="img/logo_brilloeterno.png" alt="Logo Brillo Eterno" width="72" height="72" class="me-2" style="object-fit: contain;">
+      <!-- Texto del nombre de la marca -->
+      <span class="nombre-logo">Brillo Eterno</span>
+    </a>
 
-      <!-- LOGO Y NOMBRE DE LA MARCA -->
-      <a class="navbar-brand d-flex align-items-center fw-bold" href="#inicio">
-        <img src="img/logoo.png" alt="Logo Brillo Eterno" width="72" height="72" class="me-2">
-        <span class="nombre-logo">Brillo Eterno</span>
-      </a>
+    <!-- Botón hamburguesa para pantallas pequeñas (activa o colapsa el menú) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <!-- BOTÓN RESPONSIVO PARA MÓVILES -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <!-- Contenedor que agrupa los enlaces de navegación -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <!-- Enlace al inicio -->
+        <li class="nav-item mx-2"><a class="nav-link enlace" href="index.html">Inicio</a></li>
+        <!-- Enlace a productos -->
+        <li class="nav-item mx-2"><a class="nav-link enlace" href="productos.html">Productos</a></li>
+        <!-- Enlace a la página de contacto -->
+        <li class="nav-item mx-2"><a class="nav-link enlace" href="contacto.html">Contacto</a></li>
 
-      <!-- MENÚ DE NAVEGACIÓN -->
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav align-items-center">
+        <!-- Ícono del carrito (con imagen personalizada) -->
+        <li class="nav-item d-flex align-items-center mx-1 icono-carrito">
+          <a class="nav-link p-0 icono" href="carrito.html" title="Carrito">
+            <img src="img/icono_carrito.png" alt="Carrito" width="38" height="38" style="object-fit: contain;">
+          </a>
+        </li>
 
-          <!-- Enlaces del menú -->
-          <li class="nav-item mx-2"><a class="nav-link enlace" href="#inicio">Inicio</a></li>
-          <li class="nav-item mx-2"><a class="nav-link enlace" href="#productos">Productos</a></li>
-          <li class="nav-item mx-2"><a class="nav-link enlace" href="#contacto">Contacto</a></li>
-
-          <!-- Ícono de carrito -->
-          <li class="nav-item d-flex align-items-center mx-1 icono-carrito">
-            <a class="nav-link p-0 icono" href="#"><i class="fas fa-shopping-cart"></i></a>
-          </li>
-
-          <!-- Ícono de login -->
-          <li class="nav-item d-flex align-items-center ms-2">
-            <a class="icono-login" href="#"><i class="fas fa-user"></i></a>
-          </li>
-
-        </ul>
-      </div>
+        <!-- Ícono del usuario (login o perfil) -->
+        <li class="nav-item d-flex align-items-center ms-2 icono-login-item">
+          <a class="icono-login d-flex align-items-center justify-content-center" href="login.html" title="Login">
+            <img src="img/icono_usuario.png" alt="Usuario" width="22" height="22" style="object-fit: contain;">
+          </a>
+        </li>
+      </ul>
     </div>
-  </nav>
-
+  </div>
+</nav>
   <!-- ================= HERO ================= -->
   <!-- Sección principal con imagen de fondo y texto destacado -->
   <section id="inicio" class="hero1">
