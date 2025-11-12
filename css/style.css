@@ -31,38 +31,12 @@ body {
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
 }
-/* ================== NAVBAR ==================
-   Fondo claro, texto marrón, transición suave en hover
-   y botón dorado con bordes redondeados. */
-.custom-navbar {
-  background-color: #f9f7f4 ;
-  border-bottom: 1px solid #e6cbd3;
-}
+
 /*es el titulo brillo eterno */
 .tittle-navbar {
   font-family: 'Playfair Display', serif;
   color: #6a5242;
   font-size: 1.6rem;
-}
-.nav-link {
-  color: #6a5242;
-  font-weight: 500;
-  margin: 0 10px;
-  transition: 0.3s;
-}
-.nav-link:hover {
-  color: #d8b47a ;
-}
-/*es el contacto y el carrito */
-.btn-contacto {
-  background-color: #d8b47a;
-  color: white;
-  border-radius: 20px;
-  padding: 6px 15px;
-  transition: 0.3s;
-}
-.btn-contacto:hover {
-  background-color: #b9975b;
 }
 /* ================== SECCIÓN HERO ==================
    Imagen principal con fondo, superposición oscura (overlay)
@@ -232,3 +206,136 @@ html {
 :target {
   scroll-margin-top: 0;
 }
+
+   /* LOGO Y NOMBRE */
+ .nombre-logo {
+   color: #5A4B40;
+   font-size: 1.9rem;
+   letter-spacing: 0.5px;
+   transition: color 0.3s ease;
+ }
+
+.nombre-logo:hover {
+  color: #C9A14A;
+}
+
+/* ENLACES */
+.enlace {
+  color: #5A4B40;
+  font-weight: 500;
+  font-size: 1.15rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.enlace:hover {
+  color: #C9A14A;
+  transform: scale(1.08);
+}
+
+/* ÍCONOS (carrito y login) */
+.icono img, .icono-login img {
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.icono img:hover, .icono-login img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Login con borde marrón */
+.icono-login {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid #5A4B40;
+  transition: all 0.3s ease;
+}
+
+.icono-login:hover {
+  border-color: #C9A14A;
+  transform: scale(1.1);
+}
+
+.icono-login img {
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.icono-login:hover img {
+  filter: brightness(1.3);
+  transform: scale(1.1);
+}
+
+/* Espaciado general entre todos los ítems */
+.navbar-nav .nav-item {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.icono-carrito {
+  margin-left: -18px;   /* acerca el carrito a “Contacto” */
+  margin-right: 16px;   /* mantiene un poco de aire con el login */
+}
+
+/* HERO */
+.hero {
+  height: 60vh;
+  background: url('../img/hero.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: opacity 0.6s ease;
+}
+.hero.fade-out {
+  opacity: 0.3;
+}
+
+/* Botón dorado */
+.boton-dorado {
+  background-color: #C9A14A;
+  border: none;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.boton-dorado:hover {
+  background-color: #b08b3f;
+  color: white;
+  transform: scale(1.03);
+}
+
+/* Formularios centrados */
+.formulario-activo {
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: left;
+}
+
+/* Botón volver */
+.btn-volver {
+  background: transparent;
+  border: none;
+  color: #5A4B40;
+  font-weight: 600;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+.btn-volver:hover {
+  color: #C9A14A;
+}
+
+/* Subrayados */
+.subrayado {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.card img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+

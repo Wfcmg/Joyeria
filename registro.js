@@ -1,235 +1,143 @@
-// === 1. CAPTURAR CONTENEDOR ===
-// Se obtiene el elemento del documento HTML donde se va a insertar el formulario de pago.
-// Ese contenedor tiene el id "formulario-pago".
-const contenedor = document.getElementById("formulario-pago");
+// ===============================
+// 1️⃣ CAPTURAR CONTENEDOR
+// ===============================
+const contenedor = document.getElementById("contenedor-registro");
 
+if (contenedor) {
+  const form = document.createElement("form");
+  form.id = "formRegistro";
+  form.classList.add("text-start");
 
-// === 2. CREAR FORMULARIO ===
-// Se crea dinámicamente un elemento <form> para construir el formulario desde JavaScript.
-// Así no se escribe directamente en HTML, sino que se genera por DOM.
-const form = document.createElement("form");
-form.id = "pagoForm"; // Se le asigna un id para identificarlo más adelante.
+  // ===============================
+  // 2️⃣ CAMPOS DEL FORMULARIO
+  // ===============================
+  const campos = [
+    { label: "Nombre Completo", type: "text", id: "nombre" },
+    { label: "Correo Electrónico", type: "email", id: "correo" },
+    { label: "Contraseña", type: "password", id: "contrasena" },
+    { label: "Confirmar Contraseña", type: "password", id: "confirmar" }
+  ];
 
+  campos.forEach(campo => {
+    const div = document.createElement("div");
+    div.classList.add("mb-3");
 
-// === 3. TÍTULO DE ENVÍO ===
-// Se agrega un encabezado para separar la sección de datos personales o de envío.
-const tituloEnvio = document.createElement("h3");
-tituloEnvio.textContent = "Datos de Envío"; // Texto visible del título.
-tituloEnvio.style.color = "#6a5242"; // Color personalizado.
-tituloEnvio.style.marginBottom = "1.5rem"; // Espaciado inferior.
-form.appendChild(tituloEnvio);
+    const label = document.createElement("label");
+    label.classList.add("form-label");
+    label.textContent = campo.label;
+    label.style.color = "#5A4B40";
+    label.style.fontWeight = "500";
 
+    const input = document.createElement("input");
+    input.type = campo.type;
+    input.id = campo.id;
+    input.classList.add("form-control");
+    input.placeholder = campo.label;
+    input.style.fontSize = "0.95rem";
+    input.style.borderRadius = "10px";
+    input.style.borderColor = "#C9A14A";
 
-// === 4. CAMPOS DE ENVÍO ===
-// Se definen los campos básicos que el cliente debe llenar antes de pagar.
-// Cada campo tiene etiqueta (label), tipo de input y un id único.
-const camposEnvio = [
-  { label: "Nombre Completo", type: "text", id: "nombre" },
-  { label: "Correo Electrónico", type: "email", id: "correo" },
-  { label: "Teléfono", type: "tel", id: "telefono" },
-  { label: "Dirección", type: "text", id: "direccion" },
-  { label: "Ciudad", type: "text", id: "ciudad" },
-  { label: "Código Postal", type: "text", id: "postal" }
-];
+    div.appendChild(label);
+    div.appendChild(input);
+    form.appendChild(div);
+  });
 
-// Se recorre el arreglo y se crean dinámicamente los campos con sus etiquetas y estilos.
-camposEnvio.forEach(campo => {
-  const div = document.createElement("div");
-  div.classList.add("mb-3"); // Espaciado vertical.
+  // ===============================
+  // 3️⃣ BOTÓN DE REGISTRO
+  // ===============================
+  const boton = document.createElement("button");
+  boton.type = "submit";
+  boton.id = "btnRegistrar";
+  boton.textContent = "Crear Cuenta";
+  boton.classList.add("btn", "w-100", "mt-3");
+  boton.style.backgroundColor = "#C9A14A";
+  boton.style.color = "#fff";
+  boton.style.border = "none";
+  boton.style.fontWeight = "600";
+  boton.style.letterSpacing = "0.5px";
+  boton.style.transition = "background 0.3s ease";
+  boton.onmouseover = () => boton.style.backgroundColor = "#b08e3a";
+  boton.onmouseout = () => boton.style.backgroundColor = "#C9A14A";
+  form.appendChild(boton);
 
-  const label = document.createElement("label");
-  label.classList.add("form-label");
-  label.textContent = campo.label;
+  // Texto de redirección al login
+  const textoLogin = document.createElement("p");
+  textoLogin.classList.add("text-muted", "mt-3", "text-center");
+  textoLogin.style.fontSize = "0.9rem";
+  textoLogin.innerHTML = `¿Ya tienes una cuenta? <a href="login.html" style="color:#C9A14A; font-weight:500; text-decoration:none;">Inicia sesión</a>`;
+  form.appendChild(textoLogin);
 
-  const input = document.createElement("input");
-  input.type = campo.type;
-  input.id = campo.id;
-  input.classList.add("form-control");
+  contenedor.appendChild(form);
 
-  // Se ensamblan los elementos en el orden correcto dentro del formulario.
-  div.appendChild(label);
-  div.appendChild(input);
-  form.appendChild(div);
-});
+  // ===============================
+  // 4️⃣ MENSAJES Y ANIMACIONES
+  // ===============================
+  const loading = document.createElement("div");
+  loading.classList.add("loading", "text-center", "mt-3");
+  loading.style.display = "none";
+  loading.textContent = "Creando tu cuenta...";
+  contenedor.appendChild(loading);
 
+  const response = document.createElement("div");
+  response.classList.add("response", "text-center", "mt-3");
+  response.style.display = "none";
+  contenedor.appendChild(response);
 
-// === 5. TÍTULO DE PAGO ===
-// Se crea una nueva sección para los datos del método de pago.
-const tituloPago = document.createElement("h3");
-tituloPago.textContent = "Método de Pago";
-tituloPago.style.color = "#6a5242";
-tituloPago.style.marginTop = "2rem";
-tituloPago.style.marginBottom = "1rem";
-form.appendChild(tituloPago);
+  // ===============================
+  // 5️⃣ VALIDACIÓN + ANIMACIÓN jQUERY
+  // ===============================
+  $("#formRegistro").on("submit", function (event) {
+    event.preventDefault();
 
+    const nombre = $("#nombre").val().trim();
+    const correo = $("#correo").val().trim();
+    const contrasena = $("#contrasena").val().trim();
+    const confirmar = $("#confirmar").val().trim();
 
-// === 6. SELECCIÓN DE MÉTODO ===
-// Se genera un menú desplegable con tres opciones de pago.
-// Esto permite al usuario elegir entre tarjeta, PayPal o transferencia.
-const divMetodo = document.createElement("div");
-divMetodo.classList.add("mb-3");
-const select = document.createElement("select");
-select.classList.add("form-select");
+    if (!nombre || !correo || !contrasena || !confirmar) {
+      $(".response").removeClass().addClass("response alert alert-danger")
+        .text("Por favor, completa todos los campos.")
+        .fadeIn();
+      return;
+    }
 
-// Se agregan las opciones una por una dentro del <select>.
-["Tarjeta de Crédito / Débito", "PayPal", "Transferencia Bancaria"].forEach(opcion => {
-  const option = document.createElement("option");
-  option.textContent = opcion;
-  select.appendChild(option);
-});
+    const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!patronCorreo.test(correo)) {
+      $(".response").removeClass().addClass("response alert alert-danger")
+        .text("El correo electrónico no es válido.")
+        .fadeIn();
+      return;
+    }
 
-divMetodo.appendChild(select);
-form.appendChild(divMetodo);
+    if (contrasena.length < 6) {
+      $(".response").removeClass().addClass("response alert alert-danger")
+        .text("La contraseña debe tener al menos 6 caracteres.")
+        .fadeIn();
+      return;
+    }
 
+    if (contrasena !== confirmar) {
+      $(".response").removeClass().addClass("response alert alert-danger")
+        .text("Las contraseñas no coinciden.")
+        .fadeIn();
+      return;
+    }
 
-// === 7. CAMPOS TARJETA ===
-// Campo específico para el número de tarjeta, visible solo si se usa ese método de pago.
-const divTarjeta = document.createElement("div");
-divTarjeta.classList.add("mb-3");
+    // === Animación de carga ===
+    $("#formRegistro").hide("slow");
+    $(".response").hide();
+    $(".loading").fadeIn().text("Creando tu cuenta...");
 
-const labelTarjeta = document.createElement("label");
-labelTarjeta.classList.add("form-label");
-labelTarjeta.textContent = "Número de Tarjeta";
+    setTimeout(() => {
+      $(".loading").hide();
+      $(".response").removeClass().addClass("response alert alert-success")
+        .text("¡Registro exitoso! Redirigiendo al inicio de sesión...")
+        .fadeIn();
 
-const inputTarjeta = document.createElement("input");
-inputTarjeta.type = "text";
-inputTarjeta.id = "tarjeta";
-inputTarjeta.maxLength = 19; // Limita la cantidad de dígitos permitidos.
-inputTarjeta.classList.add("form-control");
-
-divTarjeta.appendChild(labelTarjeta);
-divTarjeta.appendChild(inputTarjeta);
-form.appendChild(divTarjeta);
-
-
-// === 8. EXPIRACIÓN Y CVV ===
-// Se crean dos columnas dentro de una fila: una para la fecha de expiración y otra para el CVV.
-const divRow = document.createElement("div");
-divRow.classList.add("row");
-
-
-// --- Columna de Expiración ---
-const colExp = document.createElement("div");
-colExp.classList.add("col-md-6", "mb-3");
-const labelExp = document.createElement("label");
-labelExp.classList.add("form-label");
-labelExp.textContent = "Expiración";
-const inputExp = document.createElement("input");
-inputExp.type = "text";
-inputExp.id = "expiracion";
-inputExp.placeholder = "MM/AA"; // Formato esperado.
-inputExp.maxLength = 5;
-inputExp.classList.add("form-control");
-colExp.appendChild(labelExp);
-colExp.appendChild(inputExp);
-divRow.appendChild(colExp);
-
-
-// --- Columna del CVV ---
-const colCVV = document.createElement("div");
-colCVV.classList.add("col-md-6", "mb-3");
-const labelCVV = document.createElement("label");
-labelCVV.classList.add("form-label");
-labelCVV.textContent = "CVV";
-const inputCVV = document.createElement("input");
-inputCVV.type = "text";
-inputCVV.id = "cvv";
-inputCVV.maxLength = 3; // El CVV suele tener 3 dígitos.
-inputCVV.classList.add("form-control");
-colCVV.appendChild(labelCVV);
-colCVV.appendChild(inputCVV);
-divRow.appendChild(colCVV);
-
-form.appendChild(divRow);
-
-
-// === 9. BOTÓN DE PAGO ===
-// Se crea el botón principal para enviar el formulario y procesar el pago.
-const boton = document.createElement("button");
-boton.type = "submit";
-boton.id = "btnPagar";
-boton.textContent = "Confirmar y Pagar";
-boton.classList.add("btn", "boton-personalizado", "w-100", "mt-3");
-form.appendChild(boton);
-
-
-// === 10. AGREGAR FORMULARIO AL DOM ===
-// Se inserta el formulario completo dentro del contenedor visible del HTML.
-contenedor.appendChild(form);
-
-
-// === 11. EVENTO CLICK EN BOTÓN ===
-// Escucha cuando el usuario hace clic en el botón de pago.
-// Muestra un aviso en consola y una alerta como simulación del inicio del proceso.
-const button = document.getElementById("btnPagar");
-button.addEventListener("click", function(event) {
-  console.log(event);
-  alert("Procesando pago...");
-});
-
-
-// === 12. EVENTO SUBMIT ===
-// Este evento se activa cuando el usuario envía el formulario.
-// Se evita la recarga automática, se validan campos y se simula el procesamiento del pago.
-form.addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  // Captura de valores escritos por el usuario.
-  const nombre = document.getElementById("nombre").value.trim();
-  const correo = document.getElementById("correo").value.trim();
-  const direccion = document.getElementById("direccion").value.trim();
-  const tarjeta = document.getElementById("tarjeta").value.trim();
-
-  // Validación simple: si algún campo importante está vacío, se muestra una alerta de error.
-  if (!nombre || !correo || !direccion || !tarjeta) {
-    mostrarMensaje("Por favor, completa todos los campos requeridos.", false);
-    return;
-  }
-
-  // Simula el procesamiento del pago con un retardo de 1 segundo.
-  setTimeout(function() {
-    mostrarMensaje("Pago procesado exitosamente. ¡Gracias por tu compra!", true);
-
-    // Luego redirige automáticamente al inicio después de 2 segundos.
-    setTimeout(function() {
-      window.location.href = "index.html";
+      setTimeout(() => {
+        $(".response").fadeOut();
+        window.location.href = "login.html";
+      }, 3000);
     }, 2000);
-  }, 1000);
-});
-
-
-// === 13. EVENTO INPUT EN TARJETA ===
-// Detecta en tiempo real los caracteres que se ingresan en el campo de la tarjeta.
-// Ideal para validaciones o pruebas de formato.
-inputTarjeta.addEventListener("input", function() {
-  console.log("Número de tarjeta ingresado: " + this.value);
-});
-
-
-// === 14. FUNCIÓN PARA MOSTRAR MENSAJES ===
-// Función genérica que crea mensajes dinámicos (éxito o error) y los elimina después de unos segundos.
-function mostrarMensaje(texto, exito) {
-  // Si ya hay una alerta en pantalla, se elimina antes de mostrar la nueva.
-  const anterior = contenedor.querySelector(".alert");
-  if (anterior) anterior.remove();
-
-  // Se crea una nueva alerta con estilo Bootstrap.
-  const alerta = document.createElement("div");
-  alerta.textContent = texto;
-  alerta.className = `alert mt-3 ${exito ? "alert-success" : "alert-danger"}`;
-  contenedor.appendChild(alerta);
-
-  // La alerta desaparece automáticamente después de 2.5 segundos.
-  setTimeout(() => alerta.remove(), 2500);
+  });
 }
-
-
-// === 15. TIMER EXTRA (TIP DOM) ===
-// Añade un mensaje de recomendación 3 segundos después de cargar el formulario.
-// Esto demuestra el uso del temporizador y la manipulación del DOM.
-setTimeout(function() {
-  const aviso = document.createElement("p");
-  aviso.textContent = "Consejo: Verifica los datos antes de confirmar el pago.";
-  aviso.classList.add("text-muted", "mt-2");
-  form.appendChild(aviso);
-}, 3000);
