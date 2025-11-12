@@ -30,675 +30,714 @@ body {
 }
 
 .nombre-logo {
-/* ================== TÍTULOS ==================
-   Usa Playfair Display en h1, h2 y h3 para dar un estilo clásico. */
-h1, h2, h3 {
-  font-family: 'Playfair Display', serif;
-}
-
-/*es el titulo brillo eterno */
-.tittle-navbar {
-  font-family: 'Playfair Display', serif;
-  color: #5A4B40;
-  font-size: 1.9rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: color 0.3s ease;
-}
-/* ================== SECCIÓN HERO ==================
-   Imagen principal con fondo, superposición oscura (overlay)
-   y texto centrado en blanco elegante. */
-
-.nombre-logo:hover {
-  color: #C9A14A;
-}
-
-/* Enlaces del menú */
-.enlace {
-  color: #5A4B40;
-  font-weight: 500;
-  font-size: 1.15rem;
-  position: relative;
-  padding: 8px 12px;
-  transition: color 0.3s ease;
-}
-
-.enlace::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: #C9A14A;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.enlace:hover {
-  color: #C9A14A;
-}
-
-.enlace:hover::after {
-  width: 70%;
-}
-
-/* Íconos de carrito y login */
-.icono img {
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.icono:hover img {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
-
-
-
-.icono-login {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid #5A4B40;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #5A4B40 !important;
-  text-decoration: none !important;
-}
-
-.icono-login:hover {
-  border-color: #C9A14A;
-  transform: scale(1.1);
-  background-color: rgba(201, 161, 74, 0.05);
-  color: #C9A14A !important;
-}
-
-.icono-login img {
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.icono-login:hover img {
-  filter: brightness(1.3);
-  transform: scale(1.1);
-}
-
-/* Espaciado entre elementos del navbar */
-.navbar-nav .nav-item {
-  margin-left: 3px;
-  margin-right: 3px;
-}
-
-.icono-carrito {
-  margin-left: -18px;
-  margin-right: 16px;
-}
-/* === CORRECCIÓN COLOR LOGIN === */
-.icono-login {
-  color: #5A4B40 !important;
-  text-decoration: none !important;
-}
-
-.icono-login:hover {
-  color: #C9A14A !important;
-}
-
-/* =================== HERO =================== */
-.hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-  url('../img/portada.jpg') center/cover fixed no-repeat;
-  height: 90vh;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-text {
-  position: relative;
-  z-index: 2;
-  animation: fadeIn 1.5s ease;
-  text-align: center;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-}
-
-.hero h1:hover {
-  transform: scale(1.02);
-  text-shadow: 0 0 20px rgba(255,255,255,0.3);
-}
-
-.hero p {
-  font-size: 1.3rem;
-  color: #F4E9E2;
-  margin-bottom: 2rem;
-  letter-spacing: 1px;
-}
-
-/* Botón dorado personalizado */
-.boton-dorado {
-  background-color: #C9A14A;
-  border: none;
-  color: white;
-  font-weight: 600;
-  padding: 14px 40px;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  transition: all 0.4s ease;
-  box-shadow: 0 4px 15px rgba(201, 161, 74, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.boton-dorado::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: all 0.6s ease;
-}
-
-.boton-dorado:hover::before {
-  left: 100%;
-}
-
-.boton-dorado:hover {
-  background-color: #b08b3f;
-  color: white;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(201, 161, 74, 0.4);
-}
-
-/* =================== COLECCIONES =================== */
-.colecciones {
-  background-color: #F4E9E2;
-  padding: 80px 0;
-}
-
-.colecciones h2 {
-  font-family: 'Playfair Display', serif;
-  color: #5A4B40;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  transition: all 0.3s ease;
-}
-
-.metal-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  height: 320px;
-  box-shadow: 0 8px 25px rgba(90, 75, 64, 0.15);
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-
-.imagen-metal {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease, filter 0.5s ease;
-}
-
-/* Efecto al pasar el mouse */
-.metal-card:hover .imagen-metal {
-  transform: scale(1.1);
-  filter: brightness(0.5) blur(1px);
-}
-
-/* Texto que aparece encima */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
-}
-
-/* Mostrar texto al hacer hover */
-.metal-card:hover .overlay {
-  opacity: 1;
-}
-
-.overlay h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.overlay p {
-  font-size: 1rem;
-}
-
-
-.oro {
-  background: url('../img/oro.jpg') center/cover no-repeat;
-}
-
-.plata {
-  background: url('../img/plata.jpg') center/cover no-repeat;
-}
-
-.acero {
-  background: url('../img/acero.jpg') center/cover no-repeat;
-}
-
-
-/* =================== ESTADÍSTICAS =================== */
-.stats-section {
-  background-color: #EEC5AF;
-  padding: 60px 0;
-}
-
-.stat-card {
-  padding: 30px;
-  text-align: center;
-  transition: all 0.4s ease;
-  cursor: pointer;
-}
-
-.stat-card:hover {
-  transform: translateY(-10px);
-}
-
-.stat-card i {
-  font-size: 3.5rem;
-  color: #C9A14A;
-  margin-bottom: 15px;
-  transition: all 0.4s ease;
-}
-
-.stat-card:hover i {
-  transform: rotateY(360deg);
-  color: #5A4B40;
-}
-
-.counter {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #5A4B40;
-  transition: all 0.3s ease;
-}
-
-.stat-card:hover .counter {
-  color: #C9A14A;
-  transform: scale(1.1);
-}
-
-.stat-card h5 {
-  color: #5A4B40;
-  font-weight: 600;
-  margin-top: 10px;
-}
-
-/* =================== PRODUCTOS DESTACADOS =================== */
-.productos-section {
-  background-color: #F4E9E2;
-  padding: 80px 0;
-}
-
-.productos-section h2 {
-  font-family: 'Playfair Display', serif;
-  color: #5A4B40;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-}
-
-.product-mini {
-  width: 100%;
-  height: 280px;
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  background: linear-gradient(135deg, #C9A14A, #EEC5AF);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(90, 75, 64, 0.15);
-}
-
-.product-mini:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(90, 75, 64, 0.25);
-}
-
-.product-mini::before {
-  content: 'VER DETALLES';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(90, 75, 64, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 600;
-  font-size: 1.1rem;
-  opacity: 0;
-  transition: all 0.3s ease;
-  letter-spacing: 1px;
-}
-
-.product-mini:hover::before {
-  opacity: 1;
-}
-
-.product-placeholder {
-  font-size: 5rem;
-  color: white;
-  opacity: 0.4;
-  transition: all 0.3s ease;
-}
-
-.product-mini:hover .product-placeholder {
-  opacity: 0.2;
-  transform: scale(1.1);
-}
-
-.product-title {
-  text-align: center;
-  margin-top: 15px;
-  font-weight: 600;
-  color: #5A4B40;
-  transition: all 0.3s ease;
-}
-
-.product-title:hover {
-  color: #C9A14A;
-}
-
-/* =================== FRASE INSPIRADORA =================== */
-.frase {
-  background-color: #fff;
-  padding: 60px 0;
-  text-align: center;
-}
-
-.frase p {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #5A4B40;
-  font-style: italic;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.frase p:hover {
-  color: #C9A14A;
-  transform: scale(1.03);
-}
-
-/* =================== FOOTER =================== */
-.footer {
-  background-color: #5A4B40;
-  color: #F4E9E2;
-  padding: 50px 0 30px;
-}
-
-.footer h5 {
-  font-family: 'Playfair Display', serif;
-  color: #C9A14A;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-}
-
-.footer h5:hover {
-  color: #EEC5AF;
-  transform: scale(1.05);
-}
-
-.footer p {
-  color: #F4E9E2;
-  opacity: 0.9;
-  transition: all 0.3s ease;
-}
-
-.footer p:hover {
-  opacity: 1;
-  color: #C9A14A;
-}
-
-.footer a {
-  color: #F4E9E2;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.footer a:hover {
-  color: #C9A14A;
-  transform: translateY(-5px) scale(1.1);
-}
-
-/* =================== ANIMACIONES =================== */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease;
-}
-
-.animate-on-scroll.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =================== RESPONSIVE =================== */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
+  /* ================== TÍTULOS ==================
+     Usa Playfair Display en h1, h2 y h3 para dar un estilo clásico. */
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
   }
 
-  .nombre-logo {
-    font-size: 1.5rem;
+  /*es el titulo brillo eterno */
+
+  .tittle-navbar {
+    font-family: 'Playfair Display', serif;
+    color: #5A4B40;
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
   }
+
+  /* ================== SECCIÓN HERO ==================
+     Imagen principal con fondo, superposición oscura (overlay)
+     y texto centrado en blanco elegante. */
+
+  .nombre-logo:hover {
+    color: #C9A14A;
+  }
+
+  /* Enlaces del menú */
 
   .enlace {
-    font-size: 1rem;
+    color: #5A4B40;
+    font-weight: 500;
+    font-size: 1.15rem;
+    position: relative;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+  }
+
+  .enlace::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #C9A14A;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .enlace:hover {
+    color: #C9A14A;
+  }
+
+  .enlace:hover::after {
+    width: 70%;
+  }
+
+  /* Íconos de carrito y login */
+
+  .icono img {
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+
+  .icono:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+
+
+  .icono-login {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #5A4B40;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5A4B40 !important;
+    text-decoration: none !important;
+  }
+
+  .icono-login:hover {
+    border-color: #C9A14A;
+    transform: scale(1.1);
+    background-color: rgba(201, 161, 74, 0.05);
+    color: #C9A14A !important;
+  }
+
+  .icono-login img {
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+
+  .icono-login:hover img {
+    filter: brightness(1.3);
+    transform: scale(1.1);
+  }
+
+  /* Espaciado entre elementos del navbar */
+
+  .navbar-nav .nav-item {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+  .icono-carrito {
+    margin-left: -18px;
+    margin-right: 16px;
+  }
+
+  /* === CORRECCIÓN COLOR LOGIN === */
+
+  .icono-login {
+    color: #5A4B40 !important;
+    text-decoration: none !important;
+  }
+
+  .icono-login:hover {
+    color: #C9A14A !important;
+  }
+
+  /* =================== HERO =================== */
+
+  .hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    url('../img/portada.jpg') center/cover fixed no-repeat;
+    height: 90vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 1.5s ease;
+    text-align: center;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .hero h1:hover {
+    transform: scale(1.02);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+
+  .hero p {
+    font-size: 1.3rem;
+    color: #F4E9E2;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+  }
+
+  /* Botón dorado personalizado */
+
+  .boton-dorado {
+    background-color: #C9A14A;
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(201, 161, 74, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .boton-dorado::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
+  }
+
+  .boton-dorado:hover::before {
+    left: 100%;
+  }
+
+  .boton-dorado:hover {
+    background-color: #b08b3f;
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(201, 161, 74, 0.4);
+  }
+
+  /* =================== COLECCIONES =================== */
+
+  .colecciones {
+    background-color: #F4E9E2;
+    padding: 80px 0;
+  }
+
+  .colecciones h2 {
+    font-family: 'Playfair Display', serif;
+    color: #5A4B40;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
   }
 
   .metal-card {
-    height: 280px;
-    margin-bottom: 20px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 320px;
+    box-shadow: 0 8px 25px rgba(90, 75, 64, 0.15);
+    cursor: pointer;
+    transition: all 0.4s ease;
   }
 
-  .product-mini {
-    height: 240px;
+  .imagen-metal {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+  }
+
+  /* Efecto al pasar el mouse */
+
+  .metal-card:hover .imagen-metal {
+    transform: scale(1.1);
+    filter: brightness(0.5) blur(1px);
+  }
+
+  /* Texto que aparece encima */
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Mostrar texto al hacer hover */
+
+  .metal-card:hover .overlay {
+    opacity: 1;
+  }
+
+  .overlay h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .overlay p {
+    font-size: 1rem;
+  }
+
+
+  .oro {
+    background: url('../img/oro.jpg') center/cover no-repeat;
+  }
+
+  .plata {
+    background: url('../img/plata.jpg') center/cover no-repeat;
+  }
+
+  .acero {
+    background: url('../img/acero.jpg') center/cover no-repeat;
+  }
+
+
+  /* =================== ESTADÍSTICAS =================== */
+
+  .stats-section {
+    background-color: #EEC5AF;
+    padding: 60px 0;
   }
 
   .stat-card {
-    margin-bottom: 30px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
   }
-}
-/* =================== hover =================== */
-.product-mini {
-  position: relative;
-  height: 280px;
-  border-radius: 20px;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  box-shadow: 0 8px 25px rgba(90, 75, 64, 0.15);
-  cursor: pointer;
-}
 
-.product-mini:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(90, 75, 64, 0.25);
-}
+  .stat-card:hover {
+    transform: translateY(-10px);
+  }
 
-.overlay-producto {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(90, 75, 64, 0.8);
-  color: white;
-  padding: 15px;
-  opacity: 0;
-  transition: all 0.3s ease;
-}
+  .stat-card i {
+    font-size: 3.5rem;
+    color: #C9A14A;
+    margin-bottom: 15px;
+    transition: all 0.4s ease;
+  }
 
-.product-mini:hover .overlay-producto {
-  opacity: 1;
-}
+  .stat-card:hover i {
+    transform: rotateY(360deg);
+    color: #5A4B40;
+  }
 
-   /* LOGO Y NOMBRE */
- .nombre-logo {
-   color: #5A4B40;
-   font-size: 1.9rem;
-   letter-spacing: 0.5px;
-   transition: color 0.3s ease;
- }
+  .counter {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #5A4B40;
+    transition: all 0.3s ease;
+  }
 
-.nombre-logo:hover {
-  color: #C9A14A;
-}
+  .stat-card:hover .counter {
+    color: #C9A14A;
+    transform: scale(1.1);
+  }
 
-/* ENLACES */
-.enlace {
-  color: #5A4B40;
-  font-weight: 500;
-  font-size: 1.15rem;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
+  .stat-card h5 {
+    color: #5A4B40;
+    font-weight: 600;
+    margin-top: 10px;
+  }
 
-.enlace:hover {
-  color: #C9A14A;
-  transform: scale(1.08);
-}
+  /* =================== PRODUCTOS DESTACADOS =================== */
 
-/* ÍCONOS (carrito y login) */
-.icono img, .icono-login img {
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
+  .productos-section {
+    background-color: #F4E9E2;
+    padding: 80px 0;
+  }
 
-.icono img:hover, .icono-login img:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
+  .productos-section h2 {
+    font-family: 'Playfair Display', serif;
+    color: #5A4B40;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
 
-/* Login con borde marrón */
-.icono-login {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid #5A4B40;
-  transition: all 0.3s ease;
-}
+  .product-mini {
+    width: 100%;
+    height: 280px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    background: linear-gradient(135deg, #C9A14A, #EEC5AF);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(90, 75, 64, 0.15);
+  }
 
-.icono-login:hover {
-  border-color: #C9A14A;
-  transform: scale(1.1);
-}
+  .product-mini:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(90, 75, 64, 0.25);
+  }
 
-.icono-login img {
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
+  .product-mini::before {
+    content: 'VER DETALLES';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(90, 75, 64, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+  }
 
-.icono-login:hover img {
-  filter: brightness(1.3);
-  transform: scale(1.1);
-}
+  .product-mini:hover::before {
+    opacity: 1;
+  }
 
-/* Espaciado general entre todos los ítems */
-.navbar-nav .nav-item {
-  margin-left: 3px;
-  margin-right: 3px;
-}
+  .product-placeholder {
+    font-size: 5rem;
+    color: white;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+  }
 
-.icono-carrito {
-  margin-left: -18px;   /* acerca el carrito a “Contacto” */
-  margin-right: 16px;   /* mantiene un poco de aire con el login */
-}
+  .product-mini:hover .product-placeholder {
+    opacity: 0.2;
+    transform: scale(1.1);
+  }
 
-/* HERO */
-.hero {
-  height: 60vh;
-  background: url('../img/hero.jpg') center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  transition: opacity 0.6s ease;
-}
-.hero.fade-out {
-  opacity: 0.3;
-}
+  .product-title {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #5A4B40;
+    transition: all 0.3s ease;
+  }
 
-/* Botón dorado */
-.boton-dorado {
-  background-color: #C9A14A;
-  border: none;
-  color: white;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-.boton-dorado:hover {
-  background-color: #b08b3f;
-  color: white;
-  transform: scale(1.03);
-}
+  .product-title:hover {
+    color: #C9A14A;
+  }
 
-/* Formularios centrados */
-.formulario-activo {
-  max-width: 600px;
-  margin: 50px auto;
-  text-align: left;
-}
+  /* =================== FRASE INSPIRADORA =================== */
 
-/* Botón volver */
-.btn-volver {
-  background: transparent;
-  border: none;
-  color: #5A4B40;
-  font-weight: 600;
-  margin-bottom: 15px;
-  transition: color 0.3s ease;
-}
-.btn-volver:hover {
-  color: #C9A14A;
-}
+  .frase {
+    background-color: #fff;
+    padding: 60px 0;
+    text-align: center;
+  }
 
-/* Subrayados */
-.subrayado {
-  text-decoration: underline;
-  font-weight: 600;
-}
+  .frase p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #5A4B40;
+    font-style: italic;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
 
-.card img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-}
+  .frase p:hover {
+    color: #C9A14A;
+    transform: scale(1.03);
+  }
 
+  /* =================== FOOTER =================== */
+
+  .footer {
+    background-color: #5A4B40;
+    color: #F4E9E2;
+    padding: 50px 0 30px;
+  }
+
+  .footer h5 {
+    font-family: 'Playfair Display', serif;
+    color: #C9A14A;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .footer h5:hover {
+    color: #EEC5AF;
+    transform: scale(1.05);
+  }
+
+  .footer p {
+    color: #F4E9E2;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+  }
+
+  .footer p:hover {
+    opacity: 1;
+    color: #C9A14A;
+  }
+
+  .footer a {
+    color: #F4E9E2;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .footer a:hover {
+    color: #C9A14A;
+    transform: translateY(-5px) scale(1.1);
+  }
+
+  /* =================== ANIMACIONES =================== */
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+  }
+
+  .animate-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* =================== RESPONSIVE =================== */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .nombre-logo {
+      font-size: 1.5rem;
+    }
+
+    .enlace {
+      font-size: 1rem;
+    }
+
+    .metal-card {
+      height: 280px;
+      margin-bottom: 20px;
+    }
+
+    .product-mini {
+      height: 240px;
+    }
+
+    .stat-card {
+      margin-bottom: 30px;
+    }
+  }
+  /* =================== hover =================== */
+
+  .product-mini {
+    position: relative;
+    height: 280px;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 25px rgba(90, 75, 64, 0.15);
+    cursor: pointer;
+  }
+
+  .product-mini:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(90, 75, 64, 0.25);
+  }
+
+  .overlay-producto {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(90, 75, 64, 0.8);
+    color: white;
+    padding: 15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .product-mini:hover .overlay-producto {
+    opacity: 1;
+  }
+
+  /* LOGO Y NOMBRE */
+
+  .nombre-logo {
+    color: #5A4B40;
+    font-size: 1.9rem;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+  }
+
+  .nombre-logo:hover {
+    color: #C9A14A;
+  }
+
+  /* ENLACES */
+
+  .enlace {
+    color: #5A4B40;
+    font-weight: 500;
+    font-size: 1.15rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+
+  .enlace:hover {
+    color: #C9A14A;
+    transform: scale(1.08);
+  }
+
+  /* ÍCONOS (carrito y login) */
+
+  .icono img, .icono-login img {
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+
+  .icono img:hover, .icono-login img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+
+  /* Login con borde marrón */
+
+  .icono-login {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #5A4B40;
+    transition: all 0.3s ease;
+  }
+
+  .icono-login:hover {
+    border-color: #C9A14A;
+    transform: scale(1.1);
+  }
+
+  .icono-login img {
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+
+  .icono-login:hover img {
+    filter: brightness(1.3);
+    transform: scale(1.1);
+  }
+
+  /* Espaciado general entre todos los ítems */
+
+  .navbar-nav .nav-item {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+  .icono-carrito {
+    margin-left: -18px; /* acerca el carrito a “Contacto” */
+    margin-right: 16px; /* mantiene un poco de aire con el login */
+  }
+
+  /* HERO */
+
+  .hero {
+    height: 60vh;
+    background: url('../img/hero.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 0.6s ease;
+  }
+
+  .hero.fade-out {
+    opacity: 0.3;
+  }
+
+  /* Botón dorado */
+
+  .boton-dorado {
+    background-color: #C9A14A;
+    border: none;
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .boton-dorado:hover {
+    background-color: #b08b3f;
+    color: white;
+    transform: scale(1.03);
+  }
+
+  /* Formularios centrados */
+
+  .formulario-activo {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: left;
+  }
+
+  /* Botón volver */
+
+  .btn-volver {
+    background: transparent;
+    border: none;
+    color: #5A4B40;
+    font-weight: 600;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+  }
+
+  .btn-volver:hover {
+    color: #C9A14A;
+  }
+
+  /* Subrayados */
+
+  .subrayado {
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .card img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+}
