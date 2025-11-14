@@ -107,7 +107,7 @@ window.ProductRepo = (function() {
     }
   }
 
-  // Validar campos obligatorios de un producto con jQuery
+  // Validar campos obligatorios de un producto con jQueryy
   function validateProduct(producto) {
     const required = ['id', 'nombre', 'precio', 'stock', 'categoria', 'material'];
     let error = null;
