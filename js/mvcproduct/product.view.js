@@ -1,79 +1,15 @@
-// Vista de productos - Todo implementado con jQuery
+// Vista de productos - Renderizado del DOM con jQuery
 
-$(document).ready(function() {
+window.ProductView = (function() {
 
-  // Estado global
-  let estado = {
-    orden: 'recomendado',
-    filtros: { categorias: new Set(), materiales: new Set() },
-    base: window.ProductRepo.getAll()
-  };
+  let $app;
 
-  // Construir facetas con jQuery
-  function buildFacets(productos) {
-    const categorias = new Set();
-    const materiales = new Set();
-
-    $.each(productos, function(index, p) {
-      if (p.categoria) categorias.add(p.categoria);
-      if (p.material) materiales.add(p.material);
-    });
-
-    return { categorias, materiales };
+  // Inicializar referencias del DOM
+  function init() {
+    $app = $('#app');
   }
 
-  // Ordenar productos con jQuery
-  function sortProducts(lista, criterio) {
-    const copia = $.extend(true, [], lista);
-
-    if (criterio === 'precio_asc') {
-      return copia.sort(function(a, b) {
-        return a.precio - b.precio;
-      });
-    } else if (criterio === 'precio_desc') {
-      return copia.sort(function(a, b) {
-        return b.precio - a.precio;
-      });
-    } else {
-      return copia;
-    }
-  }
-
-  // Aplicar filtros con jQuery
-  function applyFilters(lista, filtros) {
-    return $.grep(lista, function(p) {
-      const cumpleCategoria = filtros.categorias.size === 0 ||
-        filtros.categorias.has(p.categoria);
-
-      const cumpleMaterial = filtros.materiales.size === 0 ||
-        filtros.materiales.has(p.material);
-
-      return cumpleCategoria && cumpleMaterial;
-    });
-  }
-
-  // Formatear a USD
-  function formatUSD(n) {
-    return new Intl.NumberFormat('es-EC', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(n);
-  }
-
-  // Calcular total de inventario con jQuery
-  function calcularTotalInventarioActivos(lista) {
-    let total = 0;
-
-    $.each(lista, function(index, p) {
-      if (p.estado) {
-        total += p.precio * p.stock;
-      }
-    });
-
-    return total;
-  }
-
-  // Render layout completo con jQuery
+  // Render del layout completo
   function renderLayout() {
     const template = `
       <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar shadow-sm py-1 sticky-top">
@@ -166,10 +102,10 @@ $(document).ready(function() {
       </footer>
     `;
 
-    $('#app').html(template);
+    $app.html(template);
   }
 
-  // Render filtros dinámicos con jQuery
+  // Render de filtros dinámicos con jQuery
   function renderFilters(facets) {
     const categorias = [];
     const materiales = [];
@@ -199,118 +135,74 @@ $(document).ready(function() {
     $('#filtro-material').html(matHTML);
   }
 
-  // Render grilla de productos con jQuery
+  // Render de una tarjeta de producto
   function renderCard(p) {
-    return `
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-        <div class="card producto-card shadow-sm">
-          <div class="producto-imagen">
-            <img src="${p.img}" alt="${p.nombre}" />
-          </div>
-          <div class="card-body text-center">
-            <h5 class="product-name">${p.nombre}</h5>
-            <div class="product-meta">${p.material}</div>
-            <div class="product-price">${formatUSD(p.precio)}</div>
-            <a class="btn boton-personalizado mt-2" href="detalle.html#${p.id}">Ver detalle</a>
-          </div>
-        </div>
-      </div>
-    `;
+    const precioFormateado = window.ProductUtils.formatUSD(p.precio);
+
+    return '<div class="col-12 col-sm-6 col-lg-4 col-xl-3">' +
+      '<div class="card producto-card shadow-sm">' +
+      '<div class="producto-imagen">' +
+      '<img src="' + p.img + '" alt="' + p.nombre + '">' +
+      '</div>' +
+      '<div class="card-body text-center">' +
+      '<h5 class="product-name">' + p.nombre + '</h5>' +
+      '<div class="product-meta">' + p.material + '</div>' +
+      '<div class="product-price">' + precioFormateado + '</div>' +
+      '<a class="btn boton-personalizado mt-2" href="detalle.html#' + p.id + '">Ver detalle</a>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
   }
 
+  // Render de la grilla completa de productos
   function renderGrid(lista) {
     const $grid = $('#grid-productos');
     const $msgVacio = $('#msg-vacio');
 
     if (lista.length === 0) {
-      $grid.hide().empty().fadeIn(300);
       $msgVacio.removeClass('d-none');
-    } else {
-      $msgVacio.addClass('d-none');
-
-      let html = '';
-      $.each(lista, function(index, p) {
-        html += renderCard(p);
-      });
-
-      $grid.hide().html(html).fadeIn(300);
+      $grid.hide().empty().fadeIn(300);
+      return;
     }
+
+    $msgVacio.addClass('d-none');
+
+    let html = '';
+    $.each(lista, function(index, p) {
+      html += renderCard(p);
+    });
+
+    $grid.hide().html(html).fadeIn(300);
   }
 
-  // Actualizar vista completa con jQuery
-  function updateView() {
-    const listaFiltrada = applyFilters(estado.base, estado.filtros);
-    const listaOrdenada = sortProducts(listaFiltrada, estado.orden);
-
-    renderGrid(listaOrdenada);
-
-    const texto = listaOrdenada.length + ' resultado' + (listaOrdenada.length !== 1 ? 's' : '');
+  // Actualizar contador de resultados con animación
+  function updateCounter(total) {
+    const texto = total + ' resultado' + (total !== 1 ? 's' : '');
 
     $('#resultado-conteo').fadeOut(120, function() {
       $(this).text(texto).fadeIn(120);
     });
-
-    const total = calcularTotalInventarioActivos(estado.base);
-    console.log("Total inventario (activos): $" + total.toFixed(2));
   }
 
-  // Bind eventos con jQuery
-  function bindEvents() {
-
-    // Ordenar
-    $('#ordenar-select').on('change', function() {
-      estado.orden = $(this).val();
-      updateView();
-    });
-
-    // Filtros con delegación
-    $('#sidebar-filtros').on('change', 'input[type="checkbox"]', function() {
-      const $checkbox = $(this);
-      const valor = $checkbox.val();
-      const name = $checkbox.attr('name');
-      const checked = $checkbox.is(':checked');
-
-      if (name === 'cat[]') {
-        if (checked) {
-          estado.filtros.categorias.add(valor);
-        } else {
-          estado.filtros.categorias.delete(valor);
-        }
-      } else if (name === 'mat[]') {
-        if (checked) {
-          estado.filtros.materiales.add(valor);
-        } else {
-          estado.filtros.materiales.delete(valor);
-        }
-      }
-
-      updateView();
-    });
-
-    // Limpiar filtros
-    $('#btn-limpiar-filtros').on('click', function() {
-      estado.filtros.categorias.clear();
-      estado.filtros.materiales.clear();
-      estado.orden = 'recomendado';
-
-      $('#ordenar-select').val('recomendado');
-      $('#sidebar-filtros').find('input[type="checkbox"]').prop('checked', false);
-
-      updateView();
-    });
+  // Actualizar el selector de ordenamiento
+  function updateOrdenSelect(orden) {
+    $('#ordenar-select').val(orden);
   }
 
-  // Inicialización con jQuery
-  function init() {
-    renderLayout();
-
-    const facets = buildFacets(estado.base);
-    renderFilters(facets);
-
-    updateView();
-    bindEvents();
+  // Limpiar checkboxes de filtros
+  function clearFilterCheckboxes() {
+    $('#sidebar-filtros').find('input[type="checkbox"]').prop('checked', false);
   }
 
-  init();
+  // API pública
+  return {
+    init: init,
+    renderLayout: renderLayout,
+    renderFilters: renderFilters,
+    renderGrid: renderGrid,
+    updateCounter: updateCounter,
+    updateOrdenSelect: updateOrdenSelect,
+    clearFilterCheckboxes: clearFilterCheckboxes
+  };
 
-});
+})();

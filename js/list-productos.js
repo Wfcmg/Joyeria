@@ -1,5 +1,11 @@
 // Repositorio de productos - Solo almacenamiento y API con jQuery
 // No contiene lógica de UI ni manipulación del DOM
+const VERSION = "v2";  // Cambia a v3, v4 cuando edites la semilla
+
+if (localStorage.getItem("prod_version") !== VERSION) {
+  localStorage.removeItem("be_productos_v1");
+  localStorage.setItem("prod_version", VERSION);
+}
 
 window.ProductRepo = (function() {
 
@@ -10,7 +16,7 @@ window.ProductRepo = (function() {
       nombre: 'Anillo "Eternidad Solitaria"',
       descripcion: "Compromiso clásico. Diamante de corte brillante.",
       img: "img/producto1.jpg",
-      precio: 120.00,
+      precio: 1299.99,
       stock: 5,
       estado: true,
       categoria: "Anillo",
@@ -29,13 +35,14 @@ window.ProductRepo = (function() {
         Fabricado con materiales duraderos y de alta calidad, es ideal tanto para uso diario como para ocasiones especiales.
         Su brillo limpio y su perfil elegante lo convierten en un clásico moderno dentro de la joyería contemporánea.
       `
+      destacado: true
     },
     {
       id: "p2",
       nombre: 'Colgante "Aura de Esmeralda"',
       descripcion: "Vibrante esmeralda central y sofisticación.",
       img: "img/producto2.jpg",
-      precio: 150.00,
+      precio: 999.99,
       stock: 7,
       estado: true,
       categoria: "Collar",
@@ -56,13 +63,14 @@ window.ProductRepo = (function() {
         Cada detalle ha sido cuidadosamente trabajado para ofrecer una pieza equilibrada,
         ligera y cómoda de usar, perfecta para realzar cualquier atuendo con un toque de distinción y encanto.
       `
+      destacado: true
     },
     {
       id: "p3",
       nombre: 'Brazalete "Luz Constelación"',
       descripcion: "Fila de diamantes sutilmente brillantes.",
       img: "img/producto3.jpg",
-      precio: 180.00,
+      precio: 849.99,
       stock: 8,
       estado: true,
       categoria: "Pulsera",
@@ -83,13 +91,14 @@ window.ProductRepo = (function() {
         para atuendos formales o casuales, aportando un toque de distinción sin exceso.
         Ligero, cómodo y refinado, este brazalete representa la unión perfecta entre artesanía y belleza.
       `
+      destacado: true
     },
     {
       id: "p4",
       nombre: 'Pendientes "Perla Serena"',
       descripcion: "Perlas cultivadas con lustre perfecto.",
       img: "img/producto4.jpg",
-      precio: 210.00,
+      precio: 459.99,
       stock: 12,
       estado: true,
       categoria: "Aretes",
@@ -109,13 +118,14 @@ window.ProductRepo = (function() {
         Su diseño minimalista permite que la belleza de la perla sea la protagonista, mientras la montura metálica aporta soporte y un toque moderno.
         Son ideales para ocasiones formales, pero también complementan con sutileza un look cotidiano lleno de refinamiento.
       `
+      destacado: false
     },
     {
       id: "p5",
       nombre: 'Reloj "Tempo Rosado"',
       descripcion: "Oro rosa, nácar iridiscente y diseño impecable.",
       img: "img/producto5.jpg",
-      precio: 240.00,
+      precio: 699.99,
       stock: 6,
       estado: true,
       categoria: "Reloj",
@@ -135,6 +145,7 @@ window.ProductRepo = (function() {
         Cada detalle, desde las incrustaciones del bisel hasta el suave brillo metálico, refleja un equilibrio entre lujo y sutileza.
         Ideal para quienes buscan un accesorio funcional que a la vez proyecte distinción y estilo atemporal.
       `
+      destacado: true
     }
   ];
 
@@ -181,7 +192,7 @@ window.ProductRepo = (function() {
     }
   }
 
-  // Validar campos obligatorios de un producto con jQuery
+  // Validar campos obligatorios de un producto con jQueryy
   function validateProduct(producto) {
     const required = ['id', 'nombre', 'precio', 'stock', 'categoria', 'material'];
     let error = null;
@@ -347,4 +358,5 @@ window.ProductRepo = (function() {
     }
 
   };
+
 })();
