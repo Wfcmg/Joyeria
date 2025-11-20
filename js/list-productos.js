@@ -12,55 +12,156 @@ window.ProductRepo = (function() {
       nombre: 'Anillo "Eternidad Solitaria"',
       descripcion: "Compromiso clásico. Diamante de corte brillante.",
       img: "img/producto1.jpg",
-      precio: 1299.99,
+      precio: 120.00,
       stock: 5,
       estado: true,
       categoria: "Anillo",
-      material: "Oro blanco"
+      material: "Oro blanco",
+
+      // ===== Campos extra para la página de detalle =====
+      numero: 1,
+      titulo: 'Anillo "Eternidad Solitaria"',
+      subtitulo: 'Un diseño sobrio y moderno con un diamante de corte brillante en montura solitaria.',
+      precioTexto: '$120',
+      imagenes: ['producto1.jpg', 'producto1.2.jpg', 'producto1.3.jpg'],
+      materiales: [
+        '<strong>Metal:</strong> Aleación de platino 950 o acero quirúrgico pulido espejo, resistente al desgaste y la oxidación.',
+        '<strong>Piedra principal:</strong> Zirconia cúbica premium de 1 quilate (simula un diamante con gran brillo y pureza).',
+        '<strong>Montura:</strong> Estilo solitario de cuatro garras finas, que permite máxima entrada de luz para realzar el destello.',
+        '<strong>Acabado:</strong> Pulido de alto brillo con textura suave al tacto, libre de níquel e hipoalergénico.'
+      ],
+      descripcionDetallada: `
+        El <em>“Eternidad Solitaria”</em> representa la esencia del amor atemporal en su forma más pura.
+        Su diseño minimalista resalta la belleza de la piedra central, evocando pureza y compromiso sin exceso.
+        Fabricado con materiales duraderos y de alta calidad, es ideal tanto para uso diario como para ocasiones especiales.
+        Su brillo limpio y su perfil elegante lo convierten en un clásico moderno dentro de la joyería contemporánea.
+      `
     },
     {
       id: "p2",
       nombre: 'Colgante "Aura de Esmeralda"',
       descripcion: "Vibrante esmeralda central y sofisticación.",
       img: "img/producto2.jpg",
-      precio: 999.99,
+      precio: 150.00,
       stock: 7,
       estado: true,
       categoria: "Collar",
-      material: "Oro blanco"
+      material: "Oro blanco",
+
+      // ===== Campos extra para la página de detalle =====
+      numero: 2,
+      titulo: 'Colgante "Aura de Esmeralda"',
+      subtitulo: 'Lujo atemporal. Una esmeralda central rodeada de destellos de luz pura.',
+      precioTexto: '$150',
+      imagenes: ['producto2.jpg', 'producto2.2.jpg', 'producto2.3.jpg'],
+      materiales: [
+        '<strong>Metal:</strong> Plata esterlina 925 de alta pureza, con acabado de brillo espejo y tratamiento antidesgaste.',
+        '<strong>Piedra central:</strong> Esmeralda sintética tallada en forma cushion (cojín), con un tono verde intenso y reflejos naturales.',
+        '<strong>Piedras secundarias:</strong> Zirconias cúbicas transparentes engastadas alrededor del marco, imitando el brillo del diamante.',
+        '<strong>Cadena:</strong> Tipo cable fina de 45 cm, resistente y con cierre de anillo seguro.',
+        '<strong>Acabado:</strong> Baño de rodio que protege contra la oxidación y realza el brillo plateado.'
+      ],
+      descripcionDetallada: `
+        El <em>“Aura de Esmeralda”</em> combina la elegancia clásica con un toque moderno.
+        Su piedra central de verde vibrante simboliza la esperanza, la armonía y la renovación,
+        mientras el halo de gemas transparentes amplifica su luminosidad natural.
+        Cada detalle ha sido cuidadosamente trabajado para ofrecer una pieza equilibrada,
+        ligera y cómoda de usar, perfecta para realzar cualquier atuendo con un toque de distinción y encanto.
+      `
     },
     {
       id: "p3",
       nombre: 'Brazalete "Luz Constelación"',
       descripcion: "Fila de diamantes sutilmente brillantes.",
       img: "img/producto3.jpg",
-      precio: 849.99,
+      precio: 180.00,
       stock: 8,
       estado: true,
       categoria: "Pulsera",
-      material: "Plata"
+      material: "Plata",
+
+      // ===== Campos extra para la página de detalle =====
+      numero: 3,
+      titulo: 'Brazalete "Luz Constelación"',
+      subtitulo: 'Elegancia versátil. Una línea de destellos que envuelve la muñeca con luz y sofisticación.',
+      precioTexto: '$180',
+      imagenes: ['producto3.jpg', 'producto3.2.jpg', 'producto3.3.jpg'],
+      materiales: [
+        '<strong>Metal:</strong> Plata esterlina 925 bañada en rodio, que garantiza brillo intenso y resistencia al desgaste.',
+        '<strong>Piedras:</strong> Zirconias cúbicas transparentes de 3 mm cada una, engastadas con precisión en montura de cuatro garras.',
+        '<strong>Diseño:</strong> Estilo <em>tennis bracelet</em>, articulado para ofrecer flexibilidad y comodidad al movimiento.',
+        '<strong>Cierre:</strong> Tipo caja con doble seguridad invisible, discreto y elegante.',
+        '<strong>Acabado:</strong> Pulido de alto brillo, libre de níquel e hipoalergénico.'
+      ],
+      descripcionDetallada: `
+        El <em>“Luz Constelación”</em> es una joya que captura la esencia de la elegancia atemporal.
+        Cada piedra ha sido cuidadosamente seleccionada para reflejar la luz de manera uniforme,
+        evocando una constelación que brilla sobre la piel. Su diseño clásico y adaptable lo convierte en el complemento ideal
+        para atuendos formales o casuales, aportando un toque de distinción sin exceso.
+        Ligero, cómodo y refinado, este brazalete representa la unión perfecta entre artesanía y belleza.
+      `
     },
     {
       id: "p4",
       nombre: 'Pendientes "Perla Serena"',
       descripcion: "Perlas cultivadas con lustre perfecto.",
       img: "img/producto4.jpg",
-      precio: 459.99,
+      precio: 210.00,
       stock: 12,
       estado: true,
       categoria: "Aretes",
-      material: "Plata"
+      material: "Plata",
+
+      // ===== Campos extra para la página de detalle =====
+      numero: 4,
+      titulo: 'Pendientes "Perla Serena"',
+      subtitulo: 'Gracia natural. Perlas cultivadas con brillo sedoso y elegancia eterna.',
+      precioTexto: '$210',
+      imagenes: ['producto4.jpg', 'producto4.2.jpg', 'producto4.3.jpg'],
+      materiales: [
+        '<strong>Metal:</strong> Plata esterlina 925 o platino, ambos hipoalergénicos y resistentes a la oxidación.',
+        '<strong>Piedra principal:</strong> Perlas cultivadas de agua dulce, diámetro de 8 mm, seleccionadas por su forma redonda y lustre natural.',
+        '<strong>Montura:</strong> Sistema de cuatro garras discretas que asegura la perla sin afectar su superficie.',
+        '<strong>Cierre:</strong> Tipo mariposa clásico, cómodo y seguro para uso prolongado.',
+        '<strong>Acabado:</strong> Pulido espejo que resalta el contraste entre el brillo metálico y la suavidad nacarada.'
+      ],
+      descripcionDetallada: `
+        Los pendientes <em>“Perla Serena”</em> representan la pureza y la armonía en su máxima expresión.
+        Cada perla ha sido cuidadosamente seleccionada por su tono uniforme, superficie lisa y brillo natural.
+        Su diseño minimalista permite que la belleza de la perla sea la protagonista, mientras la montura metálica aporta soporte y un toque moderno.
+        Son ideales para ocasiones formales, pero también complementan con sutileza un look cotidiano lleno de refinamiento.
+      `
     },
     {
       id: "p5",
       nombre: 'Reloj "Tempo Rosado"',
       descripcion: "Oro rosa, nácar iridiscente y diseño impecable.",
       img: "img/producto5.jpg",
-      precio: 699.99,
+      precio: 240.00,
       stock: 6,
       estado: true,
       categoria: "Reloj",
-      material: "Oro rosa"
+      material: "Oro rosa",
+
+      // ===== Campos extra para la página de detalle =====
+      numero: 5,
+      titulo: 'Reloj "Tempo Rosado"',
+      subtitulo: 'Fusión de estilo. Elegancia en oro rosa y la serenidad del nácar iridiscente.',
+      precioTexto: '$240',
+      imagenes: ['producto5.jpg', 'producto5.2.jpg', 'producto5.3.jpg'],
+      materiales: [
+        '<strong>Metal:</strong> Acero inoxidable con baño de oro rosa, resistente a la corrosión y con acabado pulido espejo.',
+        '<strong>Esfera:</strong> Nácar natural iridiscente, con índices brillantes engastados en cristal transparente.',
+        '<strong>Bisel:</strong> Aro con incrustaciones de zirconias cúbicas que aportan destellos sutiles y reflejos de luz.',
+        '<strong>Mecanismo:</strong> Movimiento de cuarzo japonés de alta precisión con batería de larga duración.',
+        '<strong>Correa:</strong> Eslabones sólidos con cierre mariposa oculto, cómodo y seguro.'
+      ],
+      descripcionDetallada: `
+        El reloj <em>“Tempo Rosado”</em> combina la delicadeza del diseño femenino con la sofisticación de la relojería moderna.
+        Su tono cálido de oro rosa contrasta armónicamente con el brillo perlado del nácar, evocando elegancia y serenidad.
+        Cada detalle, desde las incrustaciones del bisel hasta el suave brillo metálico, refleja un equilibrio entre lujo y sutileza.
+        Ideal para quienes buscan un accesorio funcional que a la vez proyecte distinción y estilo atemporal.
+      `
     }
   ];
 
@@ -107,7 +208,7 @@ window.ProductRepo = (function() {
     }
   }
 
-  // Validar campos obligatorios de un producto con jQueryy
+  // Validar campos obligatorios de un producto con jQuery
   function validateProduct(producto) {
     const required = ['id', 'nombre', 'precio', 'stock', 'categoria', 'material'];
     let error = null;
