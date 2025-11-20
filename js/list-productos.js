@@ -16,7 +16,8 @@ window.ProductRepo = (function() {
       stock: 5,
       estado: true,
       categoria: "Anillo",
-      material: "Oro blanco"
+      material: "Oro blanco",
+      destacado: true
     },
     {
       id: "p2",
@@ -27,7 +28,8 @@ window.ProductRepo = (function() {
       stock: 7,
       estado: true,
       categoria: "Collar",
-      material: "Oro blanco"
+      material: "Oro blanco",
+      destacado: true
     },
     {
       id: "p3",
@@ -38,7 +40,8 @@ window.ProductRepo = (function() {
       stock: 8,
       estado: true,
       categoria: "Pulsera",
-      material: "Plata"
+      material: "Plata",
+      destacado: true
     },
     {
       id: "p4",
@@ -49,7 +52,8 @@ window.ProductRepo = (function() {
       stock: 12,
       estado: true,
       categoria: "Aretes",
-      material: "Plata"
+      material: "Plata",
+      destacado: false
     },
     {
       id: "p5",
@@ -60,7 +64,8 @@ window.ProductRepo = (function() {
       stock: 6,
       estado: true,
       categoria: "Reloj",
-      material: "Oro rosa"
+      material: "Oro rosa",
+      destacado: false
     }
   ];
 
