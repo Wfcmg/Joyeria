@@ -34,7 +34,7 @@ window.ProductRepo = (function() {
         Su diseño minimalista resalta la belleza de la piedra central, evocando pureza y compromiso sin exceso.
         Fabricado con materiales duraderos y de alta calidad, es ideal tanto para uso diario como para ocasiones especiales.
         Su brillo limpio y su perfil elegante lo convierten en un clásico moderno dentro de la joyería contemporánea.
-      `
+      `,
       destacado: true
     },
     {
@@ -62,7 +62,7 @@ window.ProductRepo = (function() {
         mientras el halo de gemas transparentes amplifica su luminosidad natural.
         Cada detalle ha sido cuidadosamente trabajado para ofrecer una pieza equilibrada,
         ligera y cómoda de usar, perfecta para realzar cualquier atuendo con un toque de distinción y encanto.
-      `
+      `,
       destacado: true
     },
     {
@@ -90,7 +90,7 @@ window.ProductRepo = (function() {
         evocando una constelación que brilla sobre la piel. Su diseño clásico y adaptable lo convierte en el complemento ideal
         para atuendos formales o casuales, aportando un toque de distinción sin exceso.
         Ligero, cómodo y refinado, este brazalete representa la unión perfecta entre artesanía y belleza.
-      `
+      `,
       destacado: true
     },
     {
@@ -117,7 +117,7 @@ window.ProductRepo = (function() {
         Cada perla ha sido cuidadosamente seleccionada por su tono uniforme, superficie lisa y brillo natural.
         Su diseño minimalista permite que la belleza de la perla sea la protagonista, mientras la montura metálica aporta soporte y un toque moderno.
         Son ideales para ocasiones formales, pero también complementan con sutileza un look cotidiano lleno de refinamiento.
-      `
+      `,
       destacado: false
     },
     {
@@ -144,7 +144,7 @@ window.ProductRepo = (function() {
         Su tono cálido de oro rosa contrasta armónicamente con el brillo perlado del nácar, evocando elegancia y serenidad.
         Cada detalle, desde las incrustaciones del bisel hasta el suave brillo metálico, refleja un equilibrio entre lujo y sutileza.
         Ideal para quienes buscan un accesorio funcional que a la vez proyecte distinción y estilo atemporal.
-      `
+      `,
       destacado: true
     }
   ];
