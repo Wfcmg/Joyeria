@@ -1,5 +1,11 @@
 // Repositorio de productos - Solo almacenamiento y API con jQuery
 // No contiene lógica de UI ni manipulación del DOM
+const VERSION = "v2";  // Cambia a v3, v4 cuando edites la semilla
+
+if (localStorage.getItem("prod_version") !== VERSION) {
+  localStorage.removeItem("be_productos_v1");
+  localStorage.setItem("prod_version", VERSION);
+}
 
 window.ProductRepo = (function() {
 
@@ -65,7 +71,7 @@ window.ProductRepo = (function() {
       estado: true,
       categoria: "Reloj",
       material: "Oro rosa",
-      destacado: false
+      destacado: true
     }
   ];
 
