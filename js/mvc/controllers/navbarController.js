@@ -1,6 +1,5 @@
 // --- CONTROLLER: NAVBAR ---
-
-window.NavbarController = (function() {
+window.NavbarController = (function () {
 
   function render(targetId) {
     const container = document.getElementById(targetId);
@@ -9,8 +8,6 @@ window.NavbarController = (function() {
     }
   }
 
-  return {
-    render
-  };
+  return { render };
 
 })();
