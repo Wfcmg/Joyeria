@@ -1,64 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Detalle de Producto | Brillo Eterno</title>
-<!------------------------------------------------------------------------------------------------------------------------------------------>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!------------------------------------------------------------------------------------------------------------------------------------------>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-<!------------------------------------------------------------------------------------------------------------------------------------------>
-<body>
-  <!-- Barra de navegación princpial es decir el de hamburguesa, muestra el nombre "Brillo Eterno" y los enlaces
-  a Home, Productos, Contacto y Carrito, adaptándose a pantallas grandes y pequeñas. -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar shadow-sm">
-    <div class="container">
-<!------------------------------------------------------------------------------------------------------------------------------------------>
-      <a class="navbar-brand fw-bold tittle-navbar" href="index.html">Brillo Eterno</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-<!------------------------------------------------------------------------------------------------------------------------------------------>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
-            <li class="nav-item"><a class="btn btn-contacto ms-2" href="contacto.html">Contacto</a></li>
-            <li class="nav-item"><a class="btn btn-contacto ms-2" href="carrito.html">Carrito</a></li>
-<!------------------------------------------------------------------------------------------------------------------------------------------->
-          </ul>
-        </div>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detalle de Producto | Brillo Eterno</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar shadow-sm py-1 sticky-top">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <!-- Logo y nombre del sitio, que redirigen al inicio -->
+      <a class="navbar-brand d-flex align-items-center fw-bold tittle-navbar" href="index.html" style="margin-left: 10px;">
+        <!-- Imagen del logo -->
+        <img src="img/logo_brilloeterno.png" alt="Logo Brillo Eterno" width="72" height="72" class="me-2" style="object-fit: contain;">
+        <!-- Texto del nombre de la marca -->
+        <span class="nombre-logo">Brillo Eterno</span>
+      </a>
+
+      <!-- Botón hamburguesa  -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Contenedor que agrupa los enlaces de navegación -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <!-- Enlace al inicio -->
+          <li class="nav-item mx-2"><a class="nav-link enlace" href="index.html">Inicio</a></li>
+          <!-- Enlace a productos -->
+          <li class="nav-item mx-2"><a class="nav-link enlace" href="productos.html">Productos</a></li>
+          <!-- Enlace a la página de contacto -->
+          <li class="nav-item mx-2"><a class="nav-link enlace" href="contacto.html">Contacto</a></li>
+
+          <!-- Ícono del carrito  -->
+          <li class="nav-item d-flex align-items-center mx-1 icono-carrito">
+            <a class="nav-link p-0 icono" href="carrito.html" title="Carrito">
+              <img src="img/icono_carrito.png" alt="Carrito" width="38" height="38" style="object-fit: contain;">
+            </a>
+          </li>
+
+          <!-- Ícono del usuario -->
+          <li class="nav-item d-flex align-items-center ms-2 icono-login-item">
+            <a class="icono-login d-flex align-items-center justify-content-center" href="login.html" title="Login">
+              <img src="img/icono_usuario.png" alt="Usuario" width="22" height="22" style="object-fit: contain;">
+            </a>
+          </li>
+        </ul>
+      </div>
+        </div>
   </nav>
-  <!-- Contenedor con el botón "Volver" que regresa a la página de listado de
-  productos, para que el usuario pueda salir fácilmente del detalle. -->
-  <div class="container" style="margin-top: 20px;">
-    <a href="productos.html" class="btn boton-personalizado btn-sm">← Volver</a>
-  </div>
-<!------------------------------------------------------------------------------------------------------------------------------------------->
-  <!-- Sección de encabezado del detalle: muestra el título "Detalle del producto" y una
-  frase descriptiva, centradas y con espacio vertical para dar protagonismo visual. -->
-  <section class="text-center py-5">
-    <h1 class="titulo-productos">Detalle del producto</h1>
-    <p class="subtitulo-productos">Joyas diseñadas con elegancia y perfección</p>
-  </section>
-<!------------------------------------------------------------------------------------------------------------------------------------------->
-  <!-- Área vacía (main con id "detalle-root") donde el archivo detalle.js insertará dinámicamente
-  toda la información del producto seleccionado (imágenes, texto, precio, etc.). -->
-  <main id="detalle-root"></main>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <!-- Enlace al archivo JavaScript que contiene la lógica para cargar
-  y mostrar el detalle del producto dentro de "detalle-root". -->
-  <script src="js/detalle.js"></script>
+
+    <section class="text-center py-5">
+      <h1 class="titulo-productos">Detalle del producto</h1>
+      <p class="subtitulo-productos">
+        Joyas diseñadas con elegancia y perfección
+      </p>
+    </section>
+
+    <main id="detalle-root"></main>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/detalle.js"></script>
+
+    <footer class="footer text-center py-3">
+      <p>2025 Brillo Eterno. Todos los derechos reservados.</p>
+    </footer>
   </body>
-<!------------------------------------------------------------------------------------------------------------------------------------------->
-<!-- Pie de página del sitio muestra los derechos reservados y
-visual en todas las páginas de "Brillo Eterno". -->
-  <footer class="footer text-center py-3">
-    <p>2025 Brillo Eterno. Todos los derechos reservados.</p>
-  </footer>
-<!------------------------------------------------------------------------------------------------------------------------------------------->
 </html>
