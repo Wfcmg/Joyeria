@@ -4,8 +4,6 @@
 window.ProductRepo = (function() {
 
   const STORAGE_KEY = 'be_productos_v1';
-
-  // Semilla inicial de productos
   const seedData = [
     {
       id: "p1",
@@ -17,12 +15,7 @@ window.ProductRepo = (function() {
       estado: true,
       categoria: "Anillo",
       material: "Oro blanco",
-
-      // ===== Campos extra para la página de detalle =====
-      numero: 1,
-      titulo: 'Anillo "Eternidad Solitaria"',
       subtitulo: 'Un diseño sobrio y moderno con un diamante de corte brillante en montura solitaria.',
-      precioTexto: '$120',
       imagenes: ['producto1.jpg', 'producto1.2.jpg', 'producto1.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Aleación de platino 950 o acero quirúrgico pulido espejo, resistente al desgaste y la oxidación.',
@@ -47,12 +40,7 @@ window.ProductRepo = (function() {
       estado: true,
       categoria: "Collar",
       material: "Oro blanco",
-
-      // ===== Campos extra para la página de detalle =====
-      numero: 2,
-      titulo: 'Colgante "Aura de Esmeralda"',
       subtitulo: 'Lujo atemporal. Una esmeralda central rodeada de destellos de luz pura.',
-      precioTexto: '$150',
       imagenes: ['producto2.jpg', 'producto2.2.jpg', 'producto2.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Plata esterlina 925 de alta pureza, con acabado de brillo espejo y tratamiento antidesgaste.',
@@ -79,12 +67,7 @@ window.ProductRepo = (function() {
       estado: true,
       categoria: "Pulsera",
       material: "Plata",
-
-      // ===== Campos extra para la página de detalle =====
-      numero: 3,
-      titulo: 'Brazalete "Luz Constelación"',
       subtitulo: 'Elegancia versátil. Una línea de destellos que envuelve la muñeca con luz y sofisticación.',
-      precioTexto: '$180',
       imagenes: ['producto3.jpg', 'producto3.2.jpg', 'producto3.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Plata esterlina 925 bañada en rodio, que garantiza brillo intenso y resistencia al desgaste.',
@@ -111,12 +94,7 @@ window.ProductRepo = (function() {
       estado: true,
       categoria: "Aretes",
       material: "Plata",
-
-      // ===== Campos extra para la página de detalle =====
-      numero: 4,
-      titulo: 'Pendientes "Perla Serena"',
       subtitulo: 'Gracia natural. Perlas cultivadas con brillo sedoso y elegancia eterna.',
-      precioTexto: '$210',
       imagenes: ['producto4.jpg', 'producto4.2.jpg', 'producto4.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Plata esterlina 925 o platino, ambos hipoalergénicos y resistentes a la oxidación.',
@@ -142,12 +120,7 @@ window.ProductRepo = (function() {
       estado: true,
       categoria: "Reloj",
       material: "Oro rosa",
-
-      // ===== Campos extra para la página de detalle =====
-      numero: 5,
-      titulo: 'Reloj "Tempo Rosado"',
       subtitulo: 'Fusión de estilo. Elegancia en oro rosa y la serenidad del nácar iridiscente.',
-      precioTexto: '$240',
       imagenes: ['producto5.jpg', 'producto5.2.jpg', 'producto5.3.jpg'],
       materiales: [
         '<strong>Metal:</strong> Acero inoxidable con baño de oro rosa, resistente a la corrosión y con acabado pulido espejo.',
@@ -374,5 +347,4 @@ window.ProductRepo = (function() {
     }
 
   };
-
 })();

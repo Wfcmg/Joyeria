@@ -25,39 +25,28 @@ $(document).ready(function () {
     (materiales || []).map(m => `<li>${m}</li>`).join('');
 
   // Esta función crea las imágenes grandes del visor (las que se ven principales).
-  // Recibe un "prod" (producto) que tiene dentro una lista llamada "imagenes".
-  // Usa .map() para recorrer todas las imágenes del producto una por una.
-  // A cada imagen le pone un id único usando el número del producto y su posición (i + 1).
-  // Por ejemplo: "img1-1", "img1-2", "img1-3".
-  // Luego devuelve una cadena HTML que contiene todas las imágenes grandes
-  // con la clase "detail-main" y la ruta "img/nombreArchivo".
-  // Finalmente, .join('') une todas las imágenes en un solo bloque de texto HTML
+  // Ahora usamos el "id" del producto en vez de "numero" para generar IDs únicos.
+  //
+  // Ejemplo:
+  //   prod.id = "p1"  =>  p1-img-1, p1-img-2, p1-img-3
   const crearImagenesHTML = (prod) =>
     (prod.imagenes || []).map((archivo, i) => {
-      const imgId = `img${prod.numero}-${i + 1}`;
+      const imgId = `${prod.id}-img-${i + 1}`;
       return `
         <img id="${imgId}"
              src="img/${archivo}"
              class="detail-main"
-             alt="Producto ${prod.numero} vista ${i + 1}">
+             alt="Producto ${prod.nombre} vista ${i + 1}">
       `;
     }).join('');
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Esta función genera las "miniaturas" (thumbs) de cada producto
   //
-  // Recibe un objeto "prod" (producto) que contiene un arreglo llamado "imagenes"
-  // Con .map() recorre cada imagen del producto una por una
-  // Dentro del recorrido, se crea un id único para cada imagen
-  // usando el número del producto y el índice de la imagen (i + 1)
-  //
-  // Luego, devuelve un bloque HTML con un enlace <a> que tiene:
-  //   - la clase "thumb" (para aplicar estilos CSS)
-  //   - un atributo href="#idDeLaImagen", que apunta a la imagen grande correspondiente
-  // Dentro de ese enlace se coloca una etiqueta <img> con la miniatura del producto
+  // Usa el mismo patrón de ID basado en prod.id para que las thumbs apunten a su imagen grande.
   const crearThumbsHTML = (prod) =>
     (prod.imagenes || []).map((archivo, i) => {
-      const imgId = `img${prod.numero}-${i + 1}`;
+      const imgId = `${prod.id}-img-${i + 1}`;
       return `
         <a class="thumb" href="#${imgId}">
           <img src="img/${archivo}" alt="">
@@ -68,7 +57,16 @@ $(document).ready(function () {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // .forEach() sirve para ejecutar una acción con cada elemento del arreglo
   // En este caso, "prod" representa un producto
-  productos.forEach((prod) => {
+  // 1) Tomar el ID desde el hash de la URL (#p1, #p2, etc.)
+  const idURL = window.location.hash.replace('#', '').trim();
+
+  // 2) Si no hay hash, no mostramos nada
+    if (!idURL) return;
+
+  // 3) Filtrar solo el producto seleccionado
+  const productoSeleccionado = productos.filter(p => p.id === idURL);
+
+  productoSeleccionado.forEach((prod) => {
     // Llaman a las funciones anteriores
     const materialesHTML = crearMaterialesHTML(prod.materiales);
     const imagenesHTML   = crearImagenesHTML(prod);
@@ -89,8 +87,8 @@ $(document).ready(function () {
             </div>
           </div>
           <div class="right">
-            <h1 class="tittle-navbar">${prod.titulo}</h1>
-            <p class="subtitle">${prod.subtitulo}</p>
+            <h1 class="tittle-navbar">${prod.nombre}</h1>
+            <p class="subtitle">${prod.subtitulo || ''}</p>
 
             <h3 class="mt-4">Materiales</h3>
             <ul class="materiales">
@@ -98,8 +96,9 @@ $(document).ready(function () {
             </ul>
 
             <h3 class="mt-4">Descripción</h3>
-            <p>${prod.descripcionDetallada}</p>
-            <div class="price mt-3">${prod.precioTexto}</div>
+            <p>${prod.descripcionDetallada || ''}</p>
+
+            <div class="price mt-3">$${(prod.precio || 0).toFixed(2)}</div>
             <button class="btn boton-personalizado mt-2">Añadir al carrito</button>
           </div>
         </div>

@@ -878,17 +878,10 @@ body {
 .subtitle{ color:var(--shadow); opacity:.8; margin:.25rem 0 1rem; }
 .price{ font-size:1.6rem; font-weight:700; color:var(--gold); margin-bottom:1rem; }
 
-/* ================== CONTROL DE VISIBILIDAD DE PRODUCTOS ==================
-   Oculta todos los productos y muestra solo el que está seleccionado
-   según el target (#id) o si una imagen está activa. */
-.detail { display: none; }
-.detail:target { display: block; }
-.detail:has(.detail-main:target) { display: block; }
-.detail:target ~ .no-target-msg,
-.detail:has(.detail-main:target) ~ .no-target-msg {
-  display: none;
+/* ================== CONTROL DE VISIBILIDAD DE PRODUCTOS ==================*/
+.detail {
+  display: block;
 }
-
 /* ================== RESPONSIVE ==================
    Cambia a una sola columna en pantallas pequeñas. */
 @media (max-width: 768px){
