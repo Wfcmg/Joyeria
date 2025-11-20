@@ -74,6 +74,8 @@ const contenedor = document.getElementById("formulario-contacto");
 if (contenedor) {
   const form = document.createElement("form");
   form.id = "form_js";
+  form.setAttribute("novalidate", true); // ← desactiva validación automática del navegador
+
 
   // Campos base
   const campos = [
@@ -82,6 +84,7 @@ if (contenedor) {
     { label: "Teléfono", type: "tel", id: "telefono" },
     { label: "Asunto", type: "text", id: "asunto" }
   ];
+
 
   campos.forEach(campo => {
     const div = document.createElement("div");
@@ -283,12 +286,14 @@ if (contenedorCita) {
       return;
     }
 
-    const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!patronCorreo.test(correoCita)) {
+    if (!patronCorreo.test(correo)) {
+      $("#correo").addClass("is-invalid"); // marca el campo en rojo
       $(".response").removeClass().addClass("response alert alert-danger")
-        .text("El correo electrónico no es válido.")
+        .text("Por favor, ingresa un correo electrónico válido (debe contener '@').")
         .fadeIn();
       return;
+    } else {
+      $("#correo").removeClass("is-invalid"); // limpia el error si ya está bien
     }
 
     const hoy = new Date();
