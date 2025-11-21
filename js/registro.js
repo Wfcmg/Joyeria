@@ -64,7 +64,7 @@ if (contenedor) {
   const textoLogin = document.createElement("p");
   textoLogin.classList.add("text-muted", "mt-3", "text-center");
   textoLogin.style.fontSize = "0.9rem";
-  textoLogin.innerHTML = `¿Ya tienes una cuenta? <a href="login.html" style="color:#C9A14A; font-weight:500; text-decoration:none;">Inicia sesión</a>`;
+  textoLogin.innerHTML = `¿Ya tienes una cuenta? <a href="../login.html" style="color:#C9A14A; font-weight:500; text-decoration:none;">Inicia sesión</a>`;
   form.appendChild(textoLogin);
 
   contenedor.appendChild(form);

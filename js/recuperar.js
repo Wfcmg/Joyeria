@@ -63,7 +63,7 @@ form.appendChild(boton);
 const volver = document.createElement("div");
 volver.classList.add("text-center", "mt-3");
 volver.style.fontSize = "0.9rem";
-volver.innerHTML = `<a href="login.html" style="color:#C9A14A;">Volver al inicio de sesión</a>`;
+volver.innerHTML = `<a href="../login.html" style="color:#C9A14A;">Volver al inicio de sesión</a>`;
 form.appendChild(volver);
 
 
